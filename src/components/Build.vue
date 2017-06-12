@@ -1,40 +1,6 @@
 <template>
 <div>
-    <header class="site-header">
-      <div class="container">
-          <div class="row">
-              <div class="col-sm-4">
-                  <a href="./#/myforms" class="logo">FormBuilder</a>
-              </div>
-              <div class="col-sm-4 text-center">
-                  
-                  <p class="save">All changes saved at <span class="save-time"></span>. <span class="glyphicon glyphicon-repeat"></span></p>
-              </div>
-              <div class="col-sm-4 text-center">
-                  <a href="#">Add Collaborators</a>
-              </div>
-          </div>
-      </div>
-    </header>
-    <nav class="site-nav">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    &nbsp;
-                </div>
-                <div class="col-sm-6 text-center">
-                    <ul>
-                        <li><a href="#">Build</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Publish</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-3">
-                    &nbsp;
-                </div>
-            </div>
-        </div>
-    </nav>
+    <AppHeader></AppHeader>
 
 <div class="content-container build-container build-body">
     <div v-on:click="addFormElements()" v-if="showAddForm" class="add-form">
@@ -670,7 +636,7 @@
 </template>
 
 <script>
-
+    import AppHeader from './AppHeader'
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
@@ -1173,15 +1139,16 @@
 
             });
 
+        },
+        components: {
+            AppHeader
         }
     }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-a {
-    color: #81D4FA;
-}
 
 .action-circle {
     border-radius: 50%;

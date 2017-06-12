@@ -6,6 +6,7 @@
 
 <script>
 import Build from './components/Build'
+import './App.css';
 
 export default {
   name: 'app',
