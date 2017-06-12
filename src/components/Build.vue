@@ -674,8 +674,13 @@
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
+    import { mapState } from 'vuex'
 
     export default {
+        computed: mapState([
+          // map this.count to store.state.count
+          'count'
+        ]),
         data() {
             return {
                 elements: {
