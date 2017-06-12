@@ -10,7 +10,7 @@
                 <p>&nbsp;</p>
               </div>
               <div class="col-sm-4 text-center">
-                  <a href="#">Add Collaborators</a>
+                  <a href="https://github.com/GregFrench/Bootstrap-Form-Builder">Fork me on GitHub</a>
               </div>
           </div>
       </div>
