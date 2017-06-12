@@ -3,8 +3,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
+import vmodal from 'vue-js-modal'
 
 Vue.use(Vuex)
+Vue.use(vmodal)
 
 const store = new Vuex.Store({
   state: {
