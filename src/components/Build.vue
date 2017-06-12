@@ -925,6 +925,7 @@
                 receiveElement: function(element, newIndex) {
 
                     this.fields.splice(newIndex, 0, {
+                        id: this.fields.length,
                         name: element.name,
                         type: element.type,
                         label: element.label,
@@ -938,6 +939,8 @@
                         isFocused: true,
                         order_rank: newIndex
                     });
+
+                    this.$store.commit('updateFields', {fields: this.fields});
 
                 },
                 removeElementProperties: function() {
@@ -1089,6 +1092,8 @@
                         $(ui.helper).replaceWith("");
 
                         that.fields.splice(newIndex, 0, that.fields.splice(oldIndex, 1)[0]);
+
+                        that.$store.commit('updateFields', {fields: that.fields});
 
                         that.elementFocus(newIndex);
 

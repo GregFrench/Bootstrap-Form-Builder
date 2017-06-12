@@ -35,9 +35,9 @@
         </div>
     </nav>
 
-    <modal name="hello-world">
+    <modal name="embed-code">
       <h1>Embed Code</h1>
-      <div id="embedcode">{{code}}</div>
+      <div class="embed-code">{{code}}</div>
     </modal>
 </div>
 </template>
@@ -53,11 +53,11 @@ export default {
   },
   methods: {
     showEmbedCode () {
-      this.$modal.show('hello-world');
+      this.$modal.show('embed-code');
       this.code = ""
     },
     hideEmbedCode () {
-      this.$modal.hide('hello-world');
+      this.$modal.hide('embed-code');
     }
   }
 }

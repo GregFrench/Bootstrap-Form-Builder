@@ -10,18 +10,14 @@ Vue.use(vmodal)
 
 const store = new Vuex.Store({
   state: {
-    count: 0
+    fields: []
   },
   mutations: {
-    increment (state) {
-      state.count++
+    updateFields (state, payload) {
+      state.fields = payload.fields
     }
   }
 })
-
-store.commit('increment')
-
-console.log(store.state.count) // -> 1
 
 Vue.config.productionTip = false
 
