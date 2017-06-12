@@ -117,11 +117,11 @@
                 </div>
                 <div v-if="field.type === 'name'">
                     <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
-                    <div class="form-inline">
-                        <div v-for="subfield in activeSubFields(field.subfields)" class="form-group" style="padding: 5px;">
-                            <input v-if="subfield.type === 'prefix' || subfield.type === 'suffix'" type="text" :name="subfield.name" class="form-control" size="4" :placeholder="subfield.placeholder">
+                    <div class="row">
+                        <div v-for="subfield in activeSubFields(field.subfields)" class="col-xs-6">
+                            <!--<input v-if="subfield.type === 'prefix' || subfield.type === 'suffix'" type="text" :name="subfield.name" class="form-control" size="4" :placeholder="subfield.placeholder">-->
 
-                            <input v-if="subfield.type === 'first_name' || subfield.type === 'last_name' || subfield.type === 'middle_name'" type="text" :name="subfield.name" class="form-control" :placeholder="subfield.placeholder">
+                            <input type="text" :name="subfield.name" class="form-control" :placeholder="subfield.placeholder">
 
                             <span class="help-block">{{subfield.label}}</span>
                         </div>
@@ -654,7 +654,8 @@
                         name: "header",
                         label: "Header",
                         type: "header",
-                        tagname: "h1"
+                        tagname: "h1",
+                        textalign: "text-left"
                     },
                     "name": {
                         name: "name",

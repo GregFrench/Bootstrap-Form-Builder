@@ -356,6 +356,16 @@ a {
     width: 300px;
 }
 
+.embed-code {
+    padding: 15px;
+}
+
+#embed-code {
+    border: 1px solid #e8e8e8;
+    height: 150px;
+    overflow-y: scroll;
+}
+
 .favorite {
     cursor: pointer;
     padding-top: 1px !important;
