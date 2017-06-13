@@ -560,7 +560,7 @@
                 <div class="row" v-for="subfield in activeIndexSubFields()">
                     <div class="col-sm-6">{{subfield.label_display}}</div>
                     <div class="col-sm-6 col-padding">
-                        <input type="text" class="form-control" v-on:keyup="editSubFieldLabel()" v-model="subfield.label">
+                        <input type="text" class="form-control" v-on:keyup="editSubFieldLabel(subfield)" v-model="label">
                     </div>
                 </div>
             </div>
@@ -888,8 +888,8 @@
                     this.fields[this.activeIndex].options = this.options;
 
                 },
-                editSubFieldLabel: function() {
-
+                editSubFieldLabel: function(subfield) {
+                    this.fields[activeIndex].subfields.label = this.label;
                 },
                 editSubHeader: function() {
 
