@@ -489,7 +489,7 @@
                 <input type="text" class="form-control" v-on:keyup="editLabel()" v-model="label">
             </div>
         </div>
-        <div v-if="type === 'text' || type === 'email'" class="element-property">
+        <div v-if="type !== 'header'" class="element-property">
             <div class="form-group">
                 <label>Label Text</label>
                 <input type="text" class="form-control" v-on:keyup="editLabel()" v-model="label">
