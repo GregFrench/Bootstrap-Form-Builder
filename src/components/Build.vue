@@ -135,41 +135,47 @@
                     <input type="email" name="email" class="form-control">
                 </div>
                 <div v-if="field.type === 'address'">
-                    <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
-                    <div v-if="field.subfields[0].active === 1" class="form-group">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
+                            <div v-if="field.subfields[0].active === 1" class="form-group">
 
-                        <input type="text" :name="field.subfields[0].name" class="form-control" :placeholder="field.subfields[0].placeholder">
+                                <input type="text" :name="field.subfields[0].name" class="form-control" :placeholder="field.subfields[0].placeholder">
 
-                        <span class="help-block">{{field.subfields[0].label}}</span>
+                                <span class="help-block">{{field.subfields[0].label}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div v-if="field.subfields[1].active === 1" class="form-group">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div v-if="field.subfields[1].active === 1" class="form-group">
 
-                        <input type="text" :name="field.subfields[1].name" class="form-control" :placeholder="field.subfields[1].placeholder">
+                                <input type="text" :name="field.subfields[1].name" class="form-control" :placeholder="field.subfields[1].placeholder">
 
-                        <span class="help-block">{{field.subfields[1].label}}</span>
+                                <span class="help-block">{{field.subfields[1].label}}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div v-if="field.subfields[2].active === 1 || field.subfields[3].active === 1" class="form-inline">
-                        <div v-if="field.subfields[2].active === 1" class="form-group">
-
+                    <div v-if="field.subfields[2].active === 1 || field.subfields[3].active === 1" class="row">
+                        <div v-if="field.subfields[2].active === 1" class="col-xs-6">
                             <input type="text" :name="field.subfields[2].name" class="form-control" :placeholder="field.subfields[2].placeholder">
-
                             <span class="help-block">{{field.subfields[2].label}}</span>
                         </div>
-                        <div v-if="field.subfields[3].active === 1" class="form-group">
+                        <div v-if="field.subfields[3].active === 1" class="col-xs-6">
 
                             <input type="text" :name="field.subfields[3].name" class="form-control" :placeholder="field.subfields[3].placeholder">
 
                             <span class="help-block">{{field.subfields[3].label}}</span>
                         </div>
                     </div>
-                    <div v-if="field.subfields[4].active === 1 || field.subfields[5].active === 1" class="form-inline">
-                        <div v-if="field.subfields[4].active === 1" class="form-group">
+                    <div v-if="field.subfields[4].active === 1 || field.subfields[5].active === 1" class="row">
+                        <div v-if="field.subfields[4].active === 1" class="col-xs-6">
 
                             <input type="text" :name="field.subfields[4].name" class="form-control" :placeholder="field.subfields[4].placeholder">
 
                             <span class="help-block">{{field.subfields[4].label}}</span>
                         </div>
-                        <div v-if="field.subfields[5].active === 1" class="form-group">
+                        <div v-if="field.subfields[5].active === 1" class="col-xs-6">
 
                             <select class="form-control" :name="field.subfields[5].name">
                                 <option value="">Country...</option>

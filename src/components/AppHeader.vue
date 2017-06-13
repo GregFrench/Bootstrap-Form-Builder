@@ -44,7 +44,7 @@
             <div v-if="field.type === 'header'">
                 <{{field.tagname}}>{{field.label}}
                   <span v-if="field.subheader !== null && field.subheader !== '' && field.subheader !== undefined">
-                    <{{'small'}}>{{field.subheader}}<{{'/small'}}>
+                    &nbsp;<{{'small'}}>{{field.subheader}}<{{'/small'}}>
                   </span>
                 </{{field.tagname}}><br />
             </div>
@@ -54,10 +54,10 @@
                 <div v-for="subfield in activeSubFields(field.subfields)">
                 <{{'div class="col-xs-6"'}}>
                   <div>
-                  <{{'input type="text" name="' + subfield.name + '" class="form-control" placeholder="' + subfield.placeholder + '"'}}>
+                  &nbsp;<{{'input type="text" name="' + subfield.name + '" class="form-control" placeholder="' + subfield.placeholder + '"'}}>
                   </div>
-                  <div>
-                  <{{'span class="help-block"'}}>{{subfield.label}}<{{'/span'}}>
+                  <div class="embed-indent">
+                  &nbsp;<{{'span class="help-block"'}}>{{subfield.label}}<{{'/span'}}>
                   </div>
                 <{{'/div'}}>
                 </div>
