@@ -557,13 +557,14 @@
         </div>
         <div v-if="type === 'name'">
             <div class="element-property">
-                <div class="row" v-for="subfield in activeSubFields()">
+                <div class="row" v-for="subfield in activeIndexSubFields()">
                     <div class="col-sm-6">{{subfield.label_display}}</div>
                     <div class="col-sm-6 col-padding">
                         <input type="text" class="form-control" v-model="subfield.label">
                     </div>
                 </div>
             </div>
+            
             <div v-for="subfield in subfieldsNameToggle(subfields)" class="element-property">
                 <label v-if="subfield.type === 'middle_name'">Middle Name</label>
                 <label v-if="subfield.type === 'prefix'">Prefix</label>
@@ -821,7 +822,16 @@
                 textalign: "text-left",
                 type: null,
                 visibility: null,
-                activeSubFields: function() {
+                activeSubFields: function(subfields) {
+
+                    return subfields.filter(function(subfield) {
+
+                        return subfield.active === 1;
+
+                    });
+
+                },
+                activeIndexSubFields: function() {
 
                     return this.fields[this.activeIndex].subfields.filter(function(subfield) {
 
@@ -941,7 +951,7 @@
                         type: element.type,
                         label: element.label,
                         options: element.options,
-                        subfields: element.subfields,
+                        subfields: element.subfields.slice(0),
                         subheader: element.subheader,
                         subheader_update: true,
                         tagname: element.tagname,
