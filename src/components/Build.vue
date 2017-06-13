@@ -131,8 +131,12 @@
                     <input type="text" name="input" class="form-control">
                 </div>
                 <div v-if="field.type === 'email'">
-                    <label class="editable editable-label" v-on:focusout="updateLabel(index)" contenteditable="true">{{field.label}}</label>
-                    <input type="email" name="email" class="form-control">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <label class="editable editable-label" v-on:focusout="updateLabel(index)" contenteditable="true">{{field.label}}</label>
+                            <input type="email" name="email" class="form-control" :placeholder="field.placeholder">
+                        </div>
+                    </div>
                 </div>
                 <div v-if="field.type === 'address'">
                     <div class="row">
@@ -716,6 +720,7 @@
                         name: "email",
                         label: "Email",
                         type: "email",
+                        placeholder: "email",
                         tagname: "input",
                         subfields: []
                     },
@@ -957,6 +962,7 @@
                         subfields: element.subfields,
                         subheader: element.subheader,
                         subheader_update: true,
+                        placeholder: element.placeholder,
                         tagname: element.tagname,
                         textalign: element.textalign,
                         visibility: element.visibility,

@@ -63,6 +63,24 @@
                 </div>
               <{{'/div'}}>
             </div>
+            <div v-if="field.type === 'email'">
+              <div>
+              <{{'div class="row"'}}>
+              </div>
+              <div>
+                <{{'div class="col-xs-12"'}}>
+              </div>
+              <div>
+                <{{'label'}}>{{field.label}}<{{'/label'}}>
+              </div>
+              <div>
+              <{{'input type="email" name="email" class="form-control" placeholder="' + field.placeholder + '"'}}>
+              </div>
+              <div>
+              <{{'/div'}}>
+              </div>
+                <{{'/div'}}>
+            </div>
             <{{'/div'}}>
           </div>
         </div>
