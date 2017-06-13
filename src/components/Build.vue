@@ -119,7 +119,6 @@
                     <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
                     <div class="row">
                         <div v-for="subfield in activeSubFields(field.subfields)" class="col-xs-6">
-                            <!--<input v-if="subfield.type === 'prefix' || subfield.type === 'suffix'" type="text" :name="subfield.name" class="form-control" size="4" :placeholder="subfield.placeholder">-->
 
                             <input type="text" :name="subfield.name" class="form-control" :placeholder="subfield.placeholder">
 
@@ -866,8 +865,6 @@
 
                 },
                 duplicate: function() {
-
-                    
 
                     this.receiveElement(JSON.parse(JSON.stringify(this.fields[this.activeIndex])), this.activeIndex + 1);
 
