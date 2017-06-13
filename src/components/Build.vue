@@ -557,10 +557,10 @@
         </div>
         <div v-if="type === 'name'">
             <div class="element-property">
-                <div class="row" v-for="subfield in activeIndexSubFields()">
+                <div class="row" v-for="subfield in activeSubFields(fields[activeIndex].subfields)">
                     <div class="col-sm-6">{{subfield.label_display}}</div>
                     <div class="col-sm-6 col-padding">
-                        <input type="text" class="form-control" v-on:keyup="editSubFieldLabel(subfield)" v-model="label">
+                        <input type="text" class="form-control" v-model="subfield.label">
                     </div>
                 </div>
             </div>
@@ -888,9 +888,6 @@
                     this.fields[this.activeIndex].options = this.options;
 
                 },
-                editSubFieldLabel: function(subfield) {
-                    this.fields[activeIndex].subfields.label = this.label;
-                },
                 editSubHeader: function() {
 
                     this.fields[this.activeIndex].subheader = this.subheader;
@@ -926,8 +923,6 @@
 
                         });
 
-                        console.log(this.subfields)
-
                         this.fields[index].isFocused = true;
 
                     }
@@ -954,7 +949,7 @@
                         type: element.type,
                         label: element.label,
                         options: element.options,
-                        subfields: element.subfields.slice(0),
+                        subfields: element.subfields,
                         subheader: element.subheader,
                         subheader_update: true,
                         tagname: element.tagname,
@@ -1092,7 +1087,7 @@
                     if (ui.item.attr("id")) {
 
                         var newIndex = parseInt($(this).data("ui-sortable").currentItem.index()),
-                            element = that.elements[ui.item.attr("id")];
+                            element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
 
                         $(this).removeAttr('data-previndex');
                         $(ui.helper).replaceWith("");
