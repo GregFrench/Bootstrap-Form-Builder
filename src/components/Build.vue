@@ -867,7 +867,9 @@
                 },
                 duplicate: function() {
 
-                    this.receiveElement(this.fields[this.activeIndex], this.activeIndex + 1);
+                    
+
+                    this.receiveElement(JSON.parse(JSON.stringify(this.fields[this.activeIndex])), this.activeIndex + 1);
 
                     this.elementFocus(this.activeIndex + 1);
 
