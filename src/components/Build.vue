@@ -557,7 +557,7 @@
         </div>
         <div v-if="type === 'name'">
             <div class="element-property">
-                <div class="row" v-for="subfield in activeSubFields(subfields)">
+                <div class="row" v-for="subfield in activeSubFields()">
                     <div class="col-sm-6">{{subfield.label_display}}</div>
                     <div class="col-sm-6 col-padding">
                         <input type="text" class="form-control" v-model="subfield.label">
@@ -655,7 +655,9 @@
                         label: "Header",
                         type: "header",
                         tagname: "h1",
-                        textalign: "text-left"
+                        textalign: "text-left",
+                        subfields: []
+
                     },
                     "name": {
                         name: "name",
@@ -708,7 +710,8 @@
                         name: "email",
                         label: "Email",
                         type: "email",
-                        tagname: "input"
+                        tagname: "input",
+                        subfields: []
                     },
                     "address": {
                         name: "address",
@@ -769,34 +772,39 @@
                         name: "input",
                         label: "Input",
                         type: "text",
-                        tagname: "input"
+                        tagname: "input",
+                        subfields: []
                     },
                     "textarea": {
                         name: "textarea",
                         label: "Textarea",
                         type: "textarea",
-                        tagname: "textarea"
+                        tagname: "textarea",
+                        subfields: []
                     },
                     "checkboxes": {
                         name: "checkboxes",
                         label: "Checkboxes",
                         type: "checkboxes",
                         tagname: "input",
-                        options: "Option 1\nOption 2\nOption 3"
+                        options: "Option 1\nOption 2\nOption 3",
+                        subfields: []
                     },
                     "radio_buttons": {
                         name: "radio_buttons",
                         label: "Radio Buttons",
                         type: "radio_buttons",
                         tagname: "input",
-                        options: "Option 1\nOption 2\nOption 3"
+                        options: "Option 1\nOption 2\nOption 3",
+                        subfields: []
                     },
                     "select": {
                         name: "select",
                         label: "Select",
                         type: "select",
                         tagname: "select",
-                        options: "Option 1\nOption 2\nOption 3"
+                        options: "Option 1\nOption 2\nOption 3",
+                        subfields: []
                     }
                 },
                 activeIndex: null,
@@ -813,9 +821,9 @@
                 textalign: "text-left",
                 type: null,
                 visibility: null,
-                activeSubFields: function(subfields) {
+                activeSubFields: function() {
 
-                    return subfields.filter(function(subfield) {
+                    return this.fields[this.activeIndex].subfields.filter(function(subfield) {
 
                         return subfield.active === 1;
 
@@ -904,6 +912,8 @@
                             field.isFocused = false;
 
                         });
+
+                        console.log(this.subfields)
 
                         this.fields[index].isFocused = true;
 

@@ -73,6 +73,15 @@ import $ from 'jquery';
 
 export default {
   methods: {
+    activeSubFields: function(subfields) {
+
+        return subfields.filter(function(subfield) {
+
+            return subfield.active === 1;
+
+        });
+
+    },
     showEmbedCode () {
       this.$modal.show('embed-code');
     },
