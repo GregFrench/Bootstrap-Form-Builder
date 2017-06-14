@@ -91,11 +91,8 @@
                 </div>
                 <div v-if="field.type === 'header'" v-bind:class="field.textalign">
                     <HeaderElement 
-                        v-bind:tagname="field.tagname"
-                        v-bind:label="field.label"
-                        v-bind:isFocused="field.isFocused"
+                        v-bind:field="field"
                         v-bind:index="index"
-                        v-bind:subheader="field.subheader"
                         v-bind:fields="fields"
                         >
                     </HeaderElement>
@@ -104,8 +101,7 @@
                     <NameElement v-bind:field="field"></NameElement>
                 </div>
                 <div v-if="field.type === 'text'">
-                    <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
-                    <input type="text" name="input" class="form-control">
+                    <InputElement v-bind:field="field"></InputElement>
                 </div>
                 <div v-if="field.type === 'email'">
                     <div class="row">
@@ -130,14 +126,6 @@
                                 <label><input type="checkbox" value="">{{option}}</label>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div v-if="field.type === 'checkboxes_horizontal'">
-                    <label class="editable" contenteditable="true">{{field.label}}</label>
-                    <div class="form-element">
-                        <label class="checkbox-inline"><input type="checkbox" value="">Option 1</label>
-                        <label class="checkbox-inline"><input type="checkbox" value="">Option 2</label>
-                        <label class="checkbox-inline"><input type="checkbox" value="">Option 3</label>
                     </div>
                 </div>
                 <div v-if="field.type === 'radio_buttons'">
@@ -332,6 +320,7 @@
     import HeaderElement from './elements/HeaderElement';
     import NameElement from './elements/NameElement';
     import AddressElement from './elements/AddressElement';
+    import InputElement from './elements/InputElement';
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
@@ -827,7 +816,8 @@
             AppHeader,
             HeaderElement,
             NameElement,
-            AddressElement
+            AddressElement,
+            InputElement
         }
     }
 
