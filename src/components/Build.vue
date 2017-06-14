@@ -104,15 +104,10 @@
                     <InputElement v-bind:field="field"></InputElement>
                 </div>
                 <div v-if="field.type === 'email'">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <label class="editable editable-label" v-on:focusout="updateLabel(index)" contenteditable="true">{{field.label}}</label>
-                            <input type="email" name="email" class="form-control" :placeholder="field.placeholder">
-                        </div>
-                    </div>
+                  <EmailElement v-bind:field="field" v-bind:index="index" v-bind:fields="fields"></EmailElement>
                 </div>
                 <div v-if="field.type === 'address'">
-                    <AddressElement v-bind:field="field"></AddressElement>
+                  <AddressElement v-bind:field="field"></AddressElement>
                 </div>
                 <div v-if="field.type === 'textarea'">
                     <label class="editable" contenteditable="true">{{field.label}}</label>
@@ -319,6 +314,7 @@
     import AppHeader from './AppHeader'
     import HeaderElement from './elements/HeaderElement';
     import NameElement from './elements/NameElement';
+    import EmailElement from './elements/EmailElement';
     import AddressElement from './elements/AddressElement';
     import InputElement from './elements/InputElement';
     import $ from 'jquery';
@@ -816,6 +812,7 @@
             AppHeader,
             HeaderElement,
             NameElement,
+            EmailElement,
             AddressElement,
             InputElement
         }
