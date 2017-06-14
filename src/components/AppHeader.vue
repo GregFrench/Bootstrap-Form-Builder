@@ -48,16 +48,62 @@
 
     <div class="code">
       <div v-for="(field,index) in this.$store.state.fields" class="form-group">
-        <div v-if="field.type === 'header'" v-bind:class="field.textalign">
-            <HeaderElement 
-                v-bind:field="field"
-                v-bind:index="index"
-                >
-            </HeaderElement>
-        </div>
-        <div v-if="field.type === 'name'">
-            <NameElement v-bind:field="field"></NameElement>
-        </div>
+        <HeaderElement
+                  v-if="field.type === 'header'"
+                  v-bind:class="field.textalign"
+                  v-bind:field="field"
+                  v-bind:index="index"
+                  >
+                </HeaderElement>
+
+                <NameElement
+                  v-if="field.type === 'name'"
+                  v-bind:field="field"
+                  >
+                </NameElement>
+
+                <InputElement
+                  v-if="field.type === 'text'"
+                  v-bind:field="field"
+                  >
+                </InputElement>
+
+                <EmailElement
+                  v-if="field.type === 'email'"
+                  v-bind:field="field"
+                  v-bind:index="index"
+                  >
+                </EmailElement>
+
+                <AddressElement
+                  v-if="field.type === 'address'"
+                  v-bind:field="field"
+                  >
+                </AddressElement>
+
+                <TextareaElement
+                  v-if="field.type === 'textarea'"
+                  v-bind:field="field"
+                  >
+                </TextareaElement>
+
+                <CheckboxesElement
+                  v-if="field.type === 'checkboxes'"
+                  v-bind:field="field"
+                  >
+                </CheckboxesElement>
+
+                <RadioButtonsElement
+                  v-if="field.type === 'radio_buttons'"
+                  v-bind:field="field"
+                  >
+                </RadioButtonsElement>
+
+                <SelectElement
+                  v-if="field.type === 'select'"
+                  v-bind:field="field"
+                  >
+                </SelectElement>
       </div>
     </div>
 </div>
@@ -70,7 +116,13 @@
 <script>
 import HeaderElement from './elements/HeaderElement';
 import NameElement from './elements/NameElement';
+import EmailElement from './elements/EmailElement';
 import AddressElement from './elements/AddressElement';
+import InputElement from './elements/InputElement';
+import TextareaElement from './elements/TextareaElement';
+import CheckboxesElement from './elements/CheckboxesElement';
+import RadioButtonsElement from './elements/RadioButtonsElement';
+import SelectElement from './elements/SelectElement';
 import $ from 'jquery';
 
 export default {
@@ -145,7 +197,13 @@ export default {
   components: {
     HeaderElement,
     NameElement,
-    AddressElement
+    EmailElement,
+    AddressElement,
+    InputElement,
+    TextareaElement,
+    CheckboxesElement,
+    RadioButtonsElement,
+    SelectElement
   }
 }
 
