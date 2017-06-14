@@ -89,42 +89,60 @@
                         <span class="glyphicon glyphicon-trash delete-trash"></span> <span class="delete-text">Remove</span>
                     </div>
                 </div>
-                <div v-if="field.type === 'header'" v-bind:class="field.textalign">
-                    <HeaderElement 
-                        v-bind:field="field"
-                        v-bind:index="index"
-                        v-bind:fields="fields"
-                        >
-                    </HeaderElement>
-                </div>
-                <div v-if="field.type === 'name'">
-                    <NameElement v-bind:field="field"></NameElement>
-                </div>
-                <div v-if="field.type === 'text'">
-                    <InputElement v-bind:field="field"></InputElement>
-                </div>
-                <div v-if="field.type === 'email'">
-                  <EmailElement
-                    v-bind:field="field"
-                    v-bind:index="index"
-                    v-bind:fields="fields"
-                    >
-                  </EmailElement>
-                </div>
-                <div v-if="field.type === 'address'">
-                  <AddressElement v-bind:field="field"></AddressElement>
-                </div>
-                <div v-if="field.type === 'textarea'">
-                  <TextareaElement v-bind:field="field"></TextareaElement>
-                </div>
-                <div v-if="field.type === 'checkboxes'">
-                  <CheckboxesElement v-bind:field="field"></CheckboxesElement>
-                </div>
+
+                <HeaderElement
+                  v-if="field.type === 'header'"
+                  v-bind:class="field.textalign"
+                  v-bind:field="field"
+                  v-bind:index="index"
+                  v-bind:fields="fields"
+                  >
+                </HeaderElement>
+
+                <NameElement
+                  v-if="field.type === 'name'"
+                  v-bind:field="field"
+                  >
+                </NameElement>
+
+                <InputElement
+                  v-if="field.type === 'text'"
+                  v-bind:field="field"
+                  >
+                </InputElement>
+
+                <EmailElement
+                  v-if="field.type === 'email'"
+                  v-bind:field="field"
+                  v-bind:index="index"
+                  v-bind:fields="fields"
+                  >
+                </EmailElement>
+
+                <AddressElement
+                  v-if="field.type === 'address'"
+                  v-bind:field="field"
+                  >
+                </AddressElement>
+
+                <TextareaElement
+                  v-if="field.type === 'textarea'"
+                  v-bind:field="field"
+                  >
+                </TextareaElement>
+
+                <CheckboxesElement
+                  v-if="field.type === 'checkboxes'"
+                  v-bind:field="field"
+                  >
+                </CheckboxesElement>
+
                 <RadioButtonsElement
                   v-if="field.type === 'radio_buttons'"
                   v-bind:field="field"
                   >
                 </RadioButtonsElement>
+
                 <SelectElement
                   v-if="field.type === 'select'"
                   v-bind:field="field"
