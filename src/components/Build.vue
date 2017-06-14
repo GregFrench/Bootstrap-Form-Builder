@@ -125,12 +125,11 @@
                   v-bind:field="field"
                   >
                 </RadioButtonsElement>
-                <div v-if="field.type === 'select'">
-                    <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
-                    <select class="form-control">
-                        <option v-for="option in splitStringByLine(field.options)">{{option}}</option>
-                    </select>
-                </div>
+                <SelectElement
+                  v-if="field.type === 'select'"
+                  v-bind:field="field"
+                  >
+                </SelectElement>
 
                 <div v-if="field.visibility === 'hidden'" class="element-not-visible">
                     <span class="glyphicon glyphicon-exclamation-sign"></span> This field is hidden and will not be seen on the form.
@@ -314,6 +313,7 @@
     import TextareaElement from './elements/TextareaElement';
     import CheckboxesElement from './elements/CheckboxesElement';
     import RadioButtonsElement from './elements/RadioButtonsElement';
+    import SelectElement from './elements/SelectElement'; 
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
@@ -650,11 +650,6 @@
                     this.showAddForm = true;
 
                 },
-                splitStringByLine: function(str) {
-
-                    return str.split("\n");
-
-                },
                 subfieldsNameToggle: function(subfields) {
 
                     return subfields.filter(function(subfield) {
@@ -814,7 +809,8 @@
             InputElement,
             TextareaElement,
             CheckboxesElement,
-            RadioButtonsElement
+            RadioButtonsElement,
+            SelectElement
         }
     }
 
