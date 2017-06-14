@@ -47,7 +47,7 @@
     </div>
 
     <div class="code">
-      <h1>Test</h1><div class="test-div"></div>
+      <h1>Tests</h1><div class="test-div"></div>
     </div>
 </div>
 </template>
@@ -76,13 +76,15 @@ export default {
 
     },
     formatCode(code) {
-      code = code.replace("<", '&#60;');
-      return code.replace(">", '&#62;\n');
+      code = code.replace(/</gi, '&#60;');
+      return code.replace(/>/gi, "&#62;<br />");
     },
     showEmbedCode () {
       $('.modal').show();
       var code = $('.code').html();
-      $("#embed-code").html(this.formatCode(code));      
+      console.log(code)
+      console.log(this.formatCode(code))
+      $(".embed-code-box").html(this.formatCode(code));      
     },
     hideEmbedCode () {
       this.$modal.hide('embed-code');
