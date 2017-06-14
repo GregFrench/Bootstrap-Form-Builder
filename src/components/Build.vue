@@ -101,15 +101,7 @@
                     </HeaderElement>
                 </div>
                 <div v-if="field.type === 'name'">
-                    <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
-                    <div class="row">
-                        <div v-for="subfield in activeSubFields(field.subfields)" class="col-xs-6">
-
-                            <input type="text" :name="subfield.name" class="form-control" :placeholder="subfield.placeholder">
-
-                            <span class="help-block">{{subfield.label}}</span>
-                        </div>
-                    </div>
+                    <NameElement v-bind:field="field"></NameElement>
                 </div>
                 <div v-if="field.type === 'text'">
                     <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
@@ -338,6 +330,7 @@
 <script>
     import AppHeader from './AppHeader'
     import HeaderElement from './elements/HeaderElement';
+    import NameElement from './elements/NameElement';
     import AddressElement from './elements/AddressElement';
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
@@ -833,6 +826,7 @@
         components: {
             AppHeader,
             HeaderElement,
+            NameElement,
             AddressElement
         }
     }
