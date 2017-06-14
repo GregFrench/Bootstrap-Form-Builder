@@ -104,14 +104,18 @@
                     <InputElement v-bind:field="field"></InputElement>
                 </div>
                 <div v-if="field.type === 'email'">
-                  <EmailElement v-bind:field="field" v-bind:index="index" v-bind:fields="fields"></EmailElement>
+                  <EmailElement
+                    v-bind:field="field"
+                    v-bind:index="index"
+                    v-bind:fields="fields"
+                    >
+                  </EmailElement>
                 </div>
                 <div v-if="field.type === 'address'">
                   <AddressElement v-bind:field="field"></AddressElement>
                 </div>
                 <div v-if="field.type === 'textarea'">
-                    <label class="editable" contenteditable="true">{{field.label}}</label>
-                    <textarea class="form-control"></textarea>
+                  <TextareaElement v-bind:field="field"></TextareaElement>
                 </div>
                 <div v-if="field.type === 'checkboxes'">
                     <label class="editable" contenteditable="true">{{field.label}}</label>
@@ -317,6 +321,7 @@
     import EmailElement from './elements/EmailElement';
     import AddressElement from './elements/AddressElement';
     import InputElement from './elements/InputElement';
+    import TextareaElement from './elements/TextareaElement';
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
@@ -814,7 +819,8 @@
             NameElement,
             EmailElement,
             AddressElement,
-            InputElement
+            InputElement,
+            TextareaElement
         }
     }
 
