@@ -77,6 +77,7 @@ export default {
     },
     formatCode(code) {
       code = code.replace(/</gi, '&#60;');
+      code = code.replace(/(?!^)&#60;/g, '<br />&#60;');
       return code.replace(/>/gi, "&#62;<br />");
     },
     showEmbedCode () {

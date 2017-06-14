@@ -90,30 +90,15 @@
                     </div>
                 </div>
                 <div v-if="field.type === 'header'" v-bind:class="field.textalign">
-                    <h1 v-if="field.tagname === 'h1' || field.tagname === null">
-                        <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel(index)">{{field.label}}</span><br />
-                        <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '' && field.subheader !== undefined)" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
-                    </h1>
-                    <h2 v-if="field.tagname === 'h2'">
-                        <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel(index)">{{field.label}}</span><br />
-                        <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '' && field.subheader !== undefined)" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
-                    </h2>
-                    <h3 v-if="field.tagname === 'h3'">
-                        <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel(index)">{{field.label}}</span><br />
-                        <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '')" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
-                    </h3>
-                    <h4 v-if="field.tagname === 'h4'">
-                        <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel(index)">{{field.label}}</span><br />
-                        <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '')" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
-                    </h4>
-                    <h5 v-if="field.tagname === 'h5'">
-                        <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel(index)">{{field.label}}</span><br />
-                        <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '')" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
-                    </h5>
-                    <h6 v-if="field.tagname === 'h6'">
-                        <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel(index)">{{field.label}}</span><br />
-                        <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '')" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
-                    </h6>
+                    <HeaderElement 
+                        v-bind:tagname="field.tagname"
+                        v-bind:label="field.label"
+                        v-bind:isFocused="field.isFocused"
+                        v-bind:index="index"
+                        v-bind:subheader="field.subheader"
+                        v-bind:fields="fields"
+                        >
+                    </HeaderElement>
                 </div>
                 <div v-if="field.type === 'name'">
                     <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
@@ -647,6 +632,7 @@
 
 <script>
     import AppHeader from './AppHeader'
+    import HeaderElement from './elements/HeaderElement';
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
@@ -1018,13 +1004,16 @@
                 updateLabel: function(index) {
 
                     var text = $("[contenteditable='true']").eq(index).text();
+                    console.log(index)
+
+                    this.fields[index].label = text;
 
                 },
                 updateSubHeader: function(index) {
 
                     var text = $(".editable-sub-" + index).eq(0).text();
 
-                    this.fields[this.activeIndex].subheader = text;
+                    //this.fields[this.activeIndex].subheader = text;
 
                     // reupdate text to deal with bug of vue being updated
                     // and rendering text twice
@@ -1136,7 +1125,8 @@
 
         },
         components: {
-            AppHeader
+            AppHeader,
+            HeaderElement
         }
     }
 
