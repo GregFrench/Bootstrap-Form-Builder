@@ -120,14 +120,11 @@
                 <div v-if="field.type === 'checkboxes'">
                   <CheckboxesElement v-bind:field="field"></CheckboxesElement>
                 </div>
-                <div v-if="field.type === 'radio_buttons'">
-                    <label class="editable" contenteditable="true">{{field.label}}</label>
-                    <div class="form-element">
-                        <div v-for="option in splitStringByLine(field.options)" class="radio">
-                            <label><input type="radio" :name="option">{{option}}</label>
-                        </div>
-                    </div>
-                </div>
+                <RadioButtonsElement
+                  v-if="field.type === 'radio_buttons'"
+                  v-bind:field="field"
+                  >
+                </RadioButtonsElement>
                 <div v-if="field.type === 'select'">
                     <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
                     <select class="form-control">
@@ -316,6 +313,7 @@
     import InputElement from './elements/InputElement';
     import TextareaElement from './elements/TextareaElement';
     import CheckboxesElement from './elements/CheckboxesElement';
+    import RadioButtonsElement from './elements/RadioButtonsElement';
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
@@ -815,7 +813,8 @@
             AddressElement,
             InputElement,
             TextareaElement,
-            CheckboxesElement
+            CheckboxesElement,
+            RadioButtonsElement
         }
     }
 
