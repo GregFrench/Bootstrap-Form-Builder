@@ -118,14 +118,7 @@
                   <TextareaElement v-bind:field="field"></TextareaElement>
                 </div>
                 <div v-if="field.type === 'checkboxes'">
-                    <label class="editable" contenteditable="true">{{field.label}}</label>
-                    <div class="form-element">
-                        <div class="outer">
-                            <div v-for="option in splitStringByLine(field.options)" class="checkbox">
-                                <label><input type="checkbox" value="">{{option}}</label>
-                            </div>
-                        </div>
-                    </div>
+                  <CheckboxesElement v-bind:field="field"></CheckboxesElement>
                 </div>
                 <div v-if="field.type === 'radio_buttons'">
                     <label class="editable" contenteditable="true">{{field.label}}</label>
@@ -322,6 +315,7 @@
     import AddressElement from './elements/AddressElement';
     import InputElement from './elements/InputElement';
     import TextareaElement from './elements/TextareaElement';
+    import CheckboxesElement from './elements/CheckboxesElement';
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
@@ -820,7 +814,8 @@
             EmailElement,
             AddressElement,
             InputElement,
-            TextareaElement
+            TextareaElement,
+            CheckboxesElement
         }
     }
 
