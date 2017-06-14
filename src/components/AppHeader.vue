@@ -47,6 +47,9 @@
     </div>
 
     <div class="code">
+      <div v-for="field in this.$store.state.fields">
+        {{field.tagname}}
+      </div>
       <h1>Tests</h1><div class="test-div"></div>
     </div>
 </div>
@@ -83,8 +86,6 @@ export default {
     showEmbedCode () {
       $('.modal').show();
       var code = $('.code').html();
-      console.log(code)
-      console.log(this.formatCode(code))
       $(".embed-code-box").html(this.formatCode(code));      
     },
     hideEmbedCode () {
