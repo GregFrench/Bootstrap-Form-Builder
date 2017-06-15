@@ -23,9 +23,7 @@
                 </div>
                 <div class="col-sm-6 text-center">
                     <ul>
-                        <li><a href="#">Build</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#" v-on:click=showEmbedCode() class="show-embed">Publish</a></li>
+                        <li><a href="#" v-on:click=showEmbedCode() class="show-embed">Get Code</a></li>
                     </ul>
                 </div>
                 <div class="col-sm-3">
