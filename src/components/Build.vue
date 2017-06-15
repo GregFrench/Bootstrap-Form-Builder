@@ -240,7 +240,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="type === 'name'">
+        <div v-if="type === 'name' && typeof fields[activeIndex] !== 'undefined'">
             <div class="element-property">
                 <div class="row" v-for="subfield in activeSubFields(fields[activeIndex].subfields)">
                     <div class="col-sm-6">{{subfield.label_display}}</div>
@@ -331,7 +331,7 @@
     import TextareaElement from './elements/TextareaElement';
     import CheckboxesElement from './elements/CheckboxesElement';
     import RadioButtonsElement from './elements/RadioButtonsElement';
-    import SelectElement from './elements/SelectElement'; 
+    import SelectElement from './elements/SelectElement';
     import $ from 'jquery';
     import 'jquery-ui/ui/widgets/draggable.js';
     import 'jquery-ui/ui/widgets/sortable.js';
