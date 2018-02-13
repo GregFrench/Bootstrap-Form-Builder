@@ -122,6 +122,8 @@ import CheckboxesElement from './elements/CheckboxesElement';
 import RadioButtonsElement from './elements/RadioButtonsElement';
 import SelectElement from './elements/SelectElement';
 import $ from 'jquery';
+import htmlBeautify from 'html-beautify';
+import selectText from 'select-text';
 
 export default {
   data() {
@@ -165,7 +167,7 @@ export default {
     showEmbedCode () {
       $('.modal').show();
       var code = $('.code').html();
-      $(".embed-code-box").html(this.formatCode(code));      
+      $(".embed-code-box").html(htmlBeautify(this.formatCode(code)));      
     },
     hideEmbedCode () {
       this.$modal.hide('embed-code');
@@ -189,6 +191,12 @@ export default {
         if($('.modal').is(":visible")) {
           $('.modal').hide();
         }
+
+    });
+
+    $(".embed-code-box").click(function() {
+
+      selectText(this);
 
     });
   },
