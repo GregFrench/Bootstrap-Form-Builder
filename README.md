@@ -1,4 +1,4 @@
-# Bootstrap Form Builder (Do not use, project not complete)
+# Bootstrap Form Builder
 
 > Drag and drop Bootstrap form builder
 
