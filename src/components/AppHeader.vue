@@ -10,7 +10,7 @@
                 <p>&nbsp;</p>
               </div>
               <div class="col-sm-4 text-center">
-                  <a href="https://github.com/GregFrench/Bootstrap-Form-Builder">Fork me on GitHub</a>
+                  <a href="https://github.com/GregFrench/Bootstrap-Form-Builder" class="fork-me">Fork me on GitHub</a>
               </div>
           </div>
       </div>
@@ -37,9 +37,9 @@
       <div class="modal-content">
         <div class="embed-code">
           <h1>Embed Code</h1>
-          <div class="embed-code-box">
+          <textarea style="width: 100%;" class="embed-code-box">
             Test
-          </div>
+          </textarea>
         </div>
       </div>
     </div>
@@ -124,6 +124,7 @@ import SelectElement from './elements/SelectElement';
 import $ from 'jquery';
 import htmlBeautify from 'html-beautify';
 import selectText from 'select-text';
+import pretty from 'pretty';
 
 export default {
   data() {
@@ -142,12 +143,7 @@ export default {
 
     },
     formatCode(code) {
-      // remove content editable attribute
-      code = code.replace(/contenteditable="true"/g, '');
-
-      // remove class editable
-      code = code.replace(/class="editable editable-label"/g, '');
-
+      /*
       // remove br tags
       code = code.replace(/<br>/g, '');
       // remove span tags
@@ -156,21 +152,33 @@ export default {
 
       code = code.replace(/(?!^)&#60;/g, '<br />&#60;');
 
-      // remove <!----> tags
-      code = code.replace(/<!---->/g, '');
       code = code.replace(/</gi, '&#60;');
 
-      code = code.replace(/>/gi, "&#62;<br />");
+      code = code.replace(/>/gi, "&#62;<br />");*/
+
+      // remove content editable attribute
+      code = code.replace(/contenteditable="true"/g, '');
+
+      // remove class editable
+      code = code.replace(/class="editable editable-label"/g, '');
+
+      // remove <!----> tags
+      code = code.replace(/<!---->/g, '');
 
       return code;
+
     },
     showEmbedCode () {
+
       $('.modal').show();
       var code = $('.code').html();
-      $(".embed-code-box").html(htmlBeautify(this.formatCode(code)));      
+      $(".embed-code-box").html(pretty(this.formatCode(code)));
+
     },
     hideEmbedCode () {
+
       this.$modal.hide('embed-code');
+
     }
   },
 
@@ -180,23 +188,29 @@ export default {
 
         if (evt.target.className == "modal-content" ||
             evt.target.className == "show-embed") {
+
             return;
+
         }
 
         if ($(evt.target).closest('.modal-content').length ||
             $(evt.target).closest('.show-embed').length) {
+
             return;
+
         }     
 
         if($('.modal').is(":visible")) {
+
           $('.modal').hide();
+
         }
 
     });
 
     $(".embed-code-box").click(function() {
 
-      selectText(this);
+      $(this).select();
 
     });
   },
