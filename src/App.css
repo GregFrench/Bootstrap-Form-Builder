@@ -388,6 +388,11 @@ footer.site-footer {
     padding: 25px 0 5px 0;
 }
 
+.fork-me {
+    display: block;
+    margin-top: 15px;
+}
+
 .form-focused {
     background-color: #e6e6e6;
 }
