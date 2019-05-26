@@ -10,7 +10,7 @@
                 <p>&nbsp;</p>
               </div>
               <div class="col-sm-4 text-center">
-                  <a href="https://github.com/GregFrench/Bootstrap-Form-Builder" class="fork-me">Fork me on GitHub</a>
+                  <a href="https://github.com/GregFrench/Bootstrap-Form-Builder" class="fork-me">Star me on GitHub</a>
               </div>
           </div>
       </div>
@@ -184,7 +184,7 @@ export default {
 
   mounted() {
 
-    $('body').click(function (evt){   
+    $('body').click(function (evt){
 
         if (evt.target.className == "modal-content" ||
             evt.target.className == "show-embed") {
@@ -198,7 +198,7 @@ export default {
 
             return;
 
-        }     
+        }
 
         if($('.modal').is(":visible")) {
 
