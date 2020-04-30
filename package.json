@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "html-beautify": "1.0.4",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jquery-ui": "1.12.1",
     "pretty": "2.0.0",
     "select-text": "1.0.1",
