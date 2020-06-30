@@ -577,9 +577,6 @@
                 editSubHeader: function() {
                     this.fields[this.activeIndex].subheader = this.subheader;
                 },
-                editTagName: function(tagname) {
-                    this.fields[this.activeIndex].tagname = tagname;
-                },
                 editTextAlign: function(textalign) {
                     this.fields[this.activeIndex].textalign = textalign;
                 },
