@@ -187,22 +187,22 @@
                 <label>Heading Size</label>
                 <div class="radio-wrapper">
                     <label v-bind:class="{ 'label-active': tagname === null || tagname === 'h1' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-on:click="editTagName('h1')" v-model="tagname" value="h1">H1
+                        <input type="radio" name="optradio" v-model="tagName" value="h1">H1
                     </label>
                     <label v-bind:class="{ 'label-active': tagname === 'h2' }" class="radio-inline">
-                        <input v-on:click="editTagName('h2')" type="radio" name="optradio" v-model="tagname" value="h2">H2
+                        <input type="radio" name="optradio" v-model="tagName" value="h2">H2
                     </label>
                     <label v-bind:class="{ 'label-active': tagname === 'h3' }" class="radio-inline">
-                        <input v-on:click="editTagName('h3')" type="radio" name="optradio" v-model="tagname" value="h3">H3
+                        <input type="radio" name="optradio" v-model="tagName" value="h3">H3
                     </label>
                     <label v-bind:class="{ 'label-active': tagname === 'h4' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-on:click="editTagName('h4')" v-model="tagname" value="h4">H4
+                        <input type="radio" name="optradio" v-model="tagName" value="h4">H4
                     </label>
                     <label v-bind:class="{ 'label-active': tagname === 'h5' }" class="radio-inline">
-                        <input v-on:click="editTagName('h5')" type="radio" name="optradio" v-model="tagname" value="h5">H5
+                        <input type="radio" name="optradio" v-model="tagName" value="h5">H5
                     </label>
                     <label v-bind:class="{ 'label-active': tagname === 'h6' }" class="radio-inline">
-                        <input v-on:click="editTagName('h6')" type="radio" name="optradio" v-model="tagname" value="h6">H6
+                        <input type="radio" name="optradio" v-model="tagName" value="h6">H6
                     </label>
                 </div>
             </div>
@@ -339,10 +339,23 @@
     import { mapState } from 'vuex'
 
     export default {
-        computed: mapState([
+        /*computed: mapState([
           // map this.count to store.state.count
           'count'
-        ]),
+        ]),*/
+        computed: {
+            tagName: {
+                // getter
+                get: function () {
+                    return this.tagname;
+                },
+                // setter
+                set: function (tagname) {
+                    this.tagname = tagname;
+                    this.fields[this.activeIndex].tagname = tagname;
+                }
+            }
+        },
         data() {
             return {
                 elements: {
