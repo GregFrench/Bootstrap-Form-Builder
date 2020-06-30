@@ -348,11 +348,16 @@
                 // getter
                 get: function () {
                     return this.tagname;
+                    // return this.$store.state.count;
                 },
                 // setter
                 set: function (tagname) {
                     this.tagname = tagname;
                     this.fields[this.activeIndex].tagname = tagname;
+                    this.$store.commit('updateTagname', {
+                        index: this.activeIndex,
+                        tagname: tagname
+                    });
                 }
             }
         },

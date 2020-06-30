@@ -183,7 +183,6 @@ export default {
   },
 
   mounted() {
-
     $('body').click(function (evt){
 
         if (evt.target.className == "modal-content" ||
