@@ -519,86 +519,58 @@
                 type: null,
                 visibility: null,
                 activeSubFields: function(subfields) {
-
                     return subfields.filter(function(subfield) {
 
                         return subfield.active === 1;
 
                     });
-
                 },
                 activeIndexSubFields: function() {
-
                     return this.fields[this.activeIndex].subfields.filter(function(subfield) {
 
                         return subfield.active === 1;
 
                     });
-
                 },
                 addFormElements: function() {
-
                     this.showAddForm = false;
                     this.showElementProperties = false;
-
                 },
                 addressToggle: function(num) {
-
                     if (this.fields[this.activeIndex].subfields[num].active === true) {
-
                         this.fields[this.activeIndex].subfields[num].active = 1;
-                        
                     } else {
-
                         this.fields[this.activeIndex].subfields[num].active = 0;
-
                     }
-
                 },
                 // delete field by deleting element from page, array, and db
                 deleteElement: function(index) {
-
                     this.fields.splice(index, 1);
-
                 },
                 duplicate: function() {
-
                     this.receiveElement(JSON.parse(JSON.stringify(this.fields[this.activeIndex])), this.activeIndex + 1);
-
                     this.elementFocus(this.activeIndex + 1);
-
                 },
                 editElementProperties: function(index) {
-
                     this.showAddForm = true;
                     this.showElementProperties = true;
-
                 },
                 editLabel: function() {
-
                     this.fields[this.activeIndex].label = this.label;
-
                 },
                 editOptions: function() {
-
                     this.fields[this.activeIndex].options = this.options;
-
                 },
                 editSubHeader: function() {
-
                     this.fields[this.activeIndex].subheader = this.subheader;
-                    
                 },
                 editTagName: function(tagname) {
                     this.fields[this.activeIndex].tagname = tagname;
                 },
                 editTextAlign: function() {
-
                     this.fields[this.activeIndex].textalign = this.textalign;
-
                 },
                 elementFocus: function(index) {
-
                     if (this.fields[index] !== undefined) {
 
                         this.activeIndex = index;
@@ -618,25 +590,16 @@
                         });
 
                         this.fields[index].isFocused = true;
-
                     }
-
                 },
                 nameToggle: function(num) {
-
                     if (this.fields[this.activeIndex].subfields[num].active === true) {
-
                         this.fields[this.activeIndex].subfields[num].active = 1;
-                        
                     } else {
-
                         this.fields[this.activeIndex].subfields[num].active = 0;
-
                     }
-
                 },
                 receiveElement: function(element, newIndex) {
-
                     this.fields.splice(newIndex, 0, {
                         id: this.fields.length,
                         name: element.name,
@@ -655,20 +618,14 @@
                     });
 
                     this.$store.commit('updateFields', {fields: this.fields});
-
                 },
                 removeElementProperties: function() {
-
                     this.showElementProperties = false;
-
                 },
                 removeFormElements: function() {
-
                     this.showAddForm = true;
-
                 },
                 subfieldsNameToggle: function(subfields) {
-
                     return subfields.filter(function(subfield) {
 
                         return subfield.type === 'prefix' ||
@@ -676,10 +633,8 @@
                         subfield.type === 'suffix';
 
                     });
-
                 },
                 switchToggle: function() {
-
                     if (this.visibility === true) {
 
                         this.visibility = "hidden";
@@ -691,33 +646,24 @@
                     }
 
                     this.fields[this.activeIndex].visibility = this.visibility;
-
-
                 },
                 updateLabel: function(index) {
-
                     var text = $("[contenteditable='true']").eq(index).text();
                     console.log(index)
 
                     this.fields[index].label = text;
-
                 },
                 updateSubHeader: function(index) {
-
                     var text = $(".editable-sub-" + index).eq(0).text();
-
-                    //this.fields[this.activeIndex].subheader = text;
 
                     // reupdate text to deal with bug of vue being updated
                     // and rendering text twice
                     $(".editable-sub-" + index).eq(0).text(text);
-
                 }
             }
         },
 
         mounted() {
-
             var that = this;
 
             $('body').click(function (evt){   
@@ -821,7 +767,6 @@
                 }
 
             });
-
         },
         components: {
             AppHeader,
