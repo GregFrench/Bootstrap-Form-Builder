@@ -727,13 +727,19 @@
                     return;
                 }
 
-                //For descendants of "form-element-container" being clicked, remove this check if you do not want to put constraint on descendants.
+                // For descendants of "form-element-container" being clicked, remove this check if you do not want to put constraint on descendants.
+                
                 if ($(evt.target).closest('.form-element-container').length ||
                     $(evt.target).closest('.element-properties').length) {
                     return;
-                }         
+                }
 
-                //Do processing of click event here for every element except with classname 'form-element-container'
+                if ($(evt.target).closest('.show-embed').length ||
+                    $(evt.target).closest('.modal').length) {
+                    return;
+                }
+
+                // Do processing of click event here for every element except with classname 'form-element-container', 'show-embed', and 'modal'.
                 that.fields.forEach(function (field) {
 
                     field.isFocused = false;
