@@ -212,13 +212,13 @@
                 <label>Text Alignment</label>
                 <div class="radio-wrapper">
                     <label v-bind:class="{ 'label-active': textalign === null || textalign === 'text-left' }" class="radio-inline">
-                    <input type="radio" name="optradio" v-on:click="editTextAlign()" v-model="textalign" value="text-left">Left
+                    <input type="radio" name="optradio" v-on:click="editTextAlign('text-left')" v-model="textalign" value="text-left">Left
                     </label>
                     <label v-bind:class="{ 'label-active': textalign === 'text-center' }" class="radio-inline">
-                    <input v-on:click="editTextAlign()" type="radio" name="optradio" v-model="textalign" value="text-center">Center
+                    <input v-on:click="editTextAlign('text-center')" type="radio" name="optradio" v-model="textalign" value="text-center">Center
                     </label>
                     <label v-bind:class="{ 'label-active': textalign === 'text-right' }" class="radio-inline">
-                    <input v-on:click="editTextAlign()" type="radio" name="optradio" v-model="textalign" value="text-right">Right
+                    <input v-on:click="editTextAlign('text-right')" type="radio" name="optradio" v-model="textalign" value="text-right">Right
                     </label>
                 </div>
             </div>
@@ -567,8 +567,8 @@
                 editTagName: function(tagname) {
                     this.fields[this.activeIndex].tagname = tagname;
                 },
-                editTextAlign: function() {
-                    this.fields[this.activeIndex].textalign = this.textalign;
+                editTextAlign: function(textalign) {
+                    this.fields[this.activeIndex].textalign = textalign;
                 },
                 elementFocus: function(index) {
                     if (this.fields[index] !== undefined) {
@@ -687,16 +687,13 @@
 
                 // Do processing of click event here for every element except with classname 'form-element-container', 'show-embed', and 'modal'.
                 that.fields.forEach(function (field) {
-
                     field.isFocused = false;
                     that.showElementProperties = false;
-
                 });
 
             });
 
             function setHeight() {
-
                 var height = $(window).height();
                 var offset = $('.sortable-container').offset().top;
 
@@ -704,7 +701,6 @@
                 $('.sortable-container').css({'height': height});
                 $('.form-elements').css({'height': height});
                 $('.element-properties').css({'height': height});
-
             }
 
             setHeight();
@@ -723,15 +719,11 @@
                 axis: "y",
                 cancel: '.editable',
                 start: function(e, ui) {
-
                     // creates a temporary attribute on the element with the old index
                     $(this).attr('data-previndex', ui.item.index());
-
                 },
                 receive: function (event, ui) {
-
                     if (ui.item.attr("id")) {
-
                         var newIndex = parseInt($(this).data("ui-sortable").currentItem.index()),
                             element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
 
@@ -741,14 +733,10 @@
                         that.receiveElement(element, newIndex);
 
                         that.elementFocus(newIndex);
-
                     }
-
                 },
                 update: function (event, ui) {
-
                     if (ui.item.index() !== -1) {
-
                         var newIndex = ui.item.index();
 
                         var oldIndex = parseInt($(this).attr('data-previndex'));
@@ -761,11 +749,8 @@
                         that.$store.commit('updateFields', {fields: that.fields});
 
                         that.elementFocus(newIndex);
-
                     }
-
                 }
-
             });
         },
         components: {
