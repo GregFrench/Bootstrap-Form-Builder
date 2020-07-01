@@ -134,13 +134,9 @@ export default {
   },
   methods: {
     activeSubFields: function(subfields) {
-
         return subfields.filter(function(subfield) {
-
             return subfield.active === 1;
-
         });
-
     },
     formatCode(code) {
       /*
@@ -169,48 +165,35 @@ export default {
 
     },
     showEmbedCode () {
-
       $('.modal').show();
       var code = $('.code').html();
       $(".embed-code-box").html(pretty(this.formatCode(code)));
 
     },
     hideEmbedCode () {
-
       this.$modal.hide('embed-code');
-
     }
   },
 
   mounted() {
     $('body').click(function (evt){
-
         if (evt.target.className == "modal-content" ||
             evt.target.className == "show-embed") {
-
             return;
-
         }
 
         if ($(evt.target).closest('.modal-content').length ||
             $(evt.target).closest('.show-embed').length) {
-
             return;
-
         }
 
         if($('.modal').is(":visible")) {
-
           $('.modal').hide();
-
         }
-
     });
 
     $(".embed-code-box").click(function() {
-
       $(this).select();
-
     });
   },
   components: {
@@ -225,5 +208,4 @@ export default {
     SelectElement
   }
 }
-
 </script>
