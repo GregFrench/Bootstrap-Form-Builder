@@ -1,9 +1,15 @@
 <template>
 <div>
-  <h1 v-if="field.tagname === 'h1' || field.tagname === null">
-    <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel($event, index)">{{field.label}}</span><br />
-    <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '' && field.subheader !== undefined)" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
-  </h1>
+    <h1 v-if="field.tagname === 'h1' || field.tagname === undefined">
+        <span
+            class="editable editable-label"
+            contenteditable="true"
+            v-on:focusout="updateLabel($event, index)"
+        >
+            {{field.label === undefined ? custom.label : field.label}}
+        </span><br />
+        <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '' && field.subheader !== undefined)" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
+    </h1>
   <h2 v-if="field.tagname === 'h2'">
     <span class="editable editable-label" contenteditable="true" v-on:focusout="updateLabel($event, index)">{{field.label}}</span><br />
     <small class="editable" :class="'editable-sub-' + index" v-if="field.isFocused || (field.subheader !== null && field.subheader !== '' && field.subheader !== undefined)" contenteditable="true" data-text="Type a subheader" v-on:focusout="updateSubHeader(index)">{{field.subheader}}</small>
@@ -33,12 +39,13 @@ export default {
   props: ["field", "index", "fields"],
   data: function () {
     return {
-      default: {
+      custom: {
         name: "header",
         label: "Header",
         type: "header",
         tagname: "h1",
-        textalign: "text-left"
+        textalign: "text-left",
+        subfields: []
       },
       fieldsRef: this.fields
     }
@@ -56,12 +63,13 @@ export default {
       // reupdate text to deal with bug of vue being updated
       // and rendering text twice
       $(".editable-sub-" + index).eq(0).text(text);
-
     }
   },
   mounted() {
-    console.log('test')
-    console.log(this.index)
+      this.$store.commit('updateHeader', {
+          index: this.index,
+          data: this.custom
+      });
   }
 }
 

@@ -79,7 +79,7 @@
 
     <div class="sortable-container">
         <div v-bind:class="{ 'sortable-border': fields.length === 0 }" class="sortable">
-            <div :id="'list-' + index" v-on:click="elementFocus(index)" v-bind:class="{ 'focused-element': field.isFocused === true }" tabindex="-1" class="form-group form-element-container" v-for="(field, index) in fields" :key="field.id">
+            <div :id="'list-' + index" v-on:click="elementFocus(index)" v-bind:class="{ 'focused-element': field.isFocused === true }" tabindex="-1" class="form-group form-element-container" v-for="(field, index) in fieldsArr" :key="field.id">
                 <div v-bind:class="{ hide: field.isFocused === false }" class="action-circles">
 
                     <div v-on:click="editElementProperties(index)" class="action-circle properties-circle">
@@ -91,7 +91,7 @@
                 </div>
 
                 <HeaderElement
-                  v-if="field.type === 'header'"
+                    v-if="field.type === 'header'"
                   v-bind:class="field.textalign"
                   v-bind:field="field"
                   v-bind:index="index"
@@ -345,6 +345,10 @@
           'count'
         ]),*/
         computed: {
+            // change name to 'fields' after switch
+            fieldsArr () {
+                return this.$store.state.fields;
+            },
             tagName: {
                 // getter
                 get: function () {
@@ -365,14 +369,6 @@
         data() {
             return {
                 elements: {
-                    "header": {
-                        name: "header",
-                        label: "Header",
-                        type: "header",
-                        tagname: "h1",
-                        textalign: "text-left",
-                        subfields: []
-                    },
                     "name": {
                         name: "name",
                         label: "Name",
@@ -742,11 +738,11 @@
                         var newIndex = parseInt($(this).data("ui-sortable").currentItem.index()),
                             element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
                         // temp
-                       /* if (ui.item.attr("id") == "header") {
-                            var element = {};
-                        } else {*/
+                        if (ui.item.attr("id") == "header") {
+                            var element = {type: 'header'};
+                        } else {
                             var element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
-                       // }
+                        }
 
                         $(this).removeAttr('data-previndex');
                         $(ui.helper).replaceWith("");
