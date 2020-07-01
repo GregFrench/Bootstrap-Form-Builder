@@ -32,7 +32,16 @@ import $ from 'jquery';
 export default {
   props: ["field", "index", "fields"],
   data: function () {
-    return { fieldsRef: this.fields }
+    return {
+      default: {
+        name: "header",
+        label: "Header",
+        type: "header",
+        tagname: "h1",
+        textalign: "text-left"
+      },
+      fieldsRef: this.fields
+    }
   },
   methods: {
     updateLabel: function(e, index) {
@@ -52,6 +61,7 @@ export default {
   },
   mounted() {
     console.log('test')
+    console.log(this.index)
   }
 }
 

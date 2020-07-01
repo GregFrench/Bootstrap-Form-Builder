@@ -332,6 +332,7 @@
     import CheckboxesElement from './elements/CheckboxesElement';
     import RadioButtonsElement from './elements/RadioButtonsElement';
     import SelectElement from './elements/SelectElement';
+
     import $ from 'jquery';
     import { cloneDeep } from "lodash";
     import 'jquery-ui/ui/widgets/draggable.js';
@@ -371,7 +372,6 @@
                         tagname: "h1",
                         textalign: "text-left",
                         subfields: []
-
                     },
                     "name": {
                         name: "name",
@@ -695,12 +695,12 @@
                     return;
                 }
 
+                // Do processing of click event here for every element except with classname 'form-element-container', 'show-embed', and 'modal'.
                 if ($(evt.target).closest('.show-embed').length ||
                     $(evt.target).closest('.modal').length) {
                     return;
                 }
 
-                // Do processing of click event here for every element except with classname 'form-element-container', 'show-embed', and 'modal'.
                 that.fields.forEach(function (field) {
                     field.isFocused = false;
                     that.showElementProperties = false;
@@ -741,12 +741,17 @@
                     if (ui.item.attr("id")) {
                         var newIndex = parseInt($(this).data("ui-sortable").currentItem.index()),
                             element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
+                        // temp
+                       /* if (ui.item.attr("id") == "header") {
+                            var element = {};
+                        } else {*/
+                            var element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
+                       // }
 
                         $(this).removeAttr('data-previndex');
                         $(ui.helper).replaceWith("");
                         
                         that.receiveElement(element, newIndex);
-
                         that.elementFocus(newIndex);
                     }
                 },
