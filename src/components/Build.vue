@@ -90,8 +90,6 @@
                     </div>
                 </div>
 
-                Focused: {{field.isFocused}}
-
                 <HeaderElement
                     v-if="field.type === 'header'"
                     v-bind:class="field.textalign"
@@ -176,29 +174,7 @@
             </div>
         </div>
         <div v-if="type === 'header'" class="element-property">
-            <div class="form-group">
-                <label>Heading Size</label>
-                <div class="radio-wrapper">
-                    <label v-bind:class="{ 'label-active': tagname === null || tagname === 'h1' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-model="tagName" value="h1">H1
-                    </label>
-                    <label v-bind:class="{ 'label-active': tagname === 'h2' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-model="tagName" value="h2">H2
-                    </label>
-                    <label v-bind:class="{ 'label-active': tagname === 'h3' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-model="tagName" value="h3">H3
-                    </label>
-                    <label v-bind:class="{ 'label-active': tagname === 'h4' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-model="tagName" value="h4">H4
-                    </label>
-                    <label v-bind:class="{ 'label-active': tagname === 'h5' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-model="tagName" value="h5">H5
-                    </label>
-                    <label v-bind:class="{ 'label-active': tagname === 'h6' }" class="radio-inline">
-                        <input type="radio" name="optradio" v-model="tagName" value="h6">H6
-                    </label>
-                </div>
-            </div>
+            <TagnameProperty />
         </div>
         <div v-if="type === 'header'" class="element-property">
             <div class="form-group">
@@ -326,6 +302,9 @@
     import RadioButtonsElement from './elements/RadioButtonsElement';
     import SelectElement from './elements/SelectElement';
 
+    // properties
+    import TagnameProperty from './properties/TagnameProperty';
+
     import $ from 'jquery';
     import { cloneDeep } from "lodash";
     import 'jquery-ui/ui/widgets/draggable.js';
@@ -341,22 +320,6 @@
             // change name to 'fields' after switch
             fieldsArr () {
                 return this.$store.state.fields;
-            },
-            tagName: {
-                // getter
-                get: function () {
-                    return this.tagname;
-                    // return this.$store.state.count;
-                },
-                // setter
-                set: function (tagname) {
-                    this.tagname = tagname;
-                    //this.fields[this.activeIndex].tagname = tagname;
-                    this.$store.commit('updateTagname', {
-                        index: this.activeIndex,
-                        tagname: tagname
-                    });
-                }
             }
         },
         data() {
@@ -522,7 +485,6 @@
                 showElementProperties: false,
                 subfields: [],
                 subheader: null,
-                tagname: null,
                 textalign: "text-left",
                 type: null,
                 visibility: null,
@@ -564,7 +526,8 @@
                     this.showElementProperties = true;
                 },
                 editLabel: function() {
-                    this.fieldsArr[this.activeIndex].label = this.label;
+                    //this.fieldsArr[this.activeIndex].label = this.label;
+                    this.$store.commit('updateFieldLabel', {index: this.activeIndex, label: this.label});
                 },
                 editOptions: function() {
                     this.fieldsArr[this.activeIndex].options = this.options;
@@ -582,23 +545,13 @@
                         this.label = this.fieldsArr[index].label;
                         this.options = this.fieldsArr[index].options;
                         this.type = this.fieldsArr[index].type;
-                        this.tagname = this.fieldsArr[index].tagname;
                         this.textalign = this.fieldsArr[index].textalign;
                         this.subfields = this.fieldsArr[index].subfields;
                         this.subheader = this.fieldsArr[index].subheader;
                         this.visibility = this.fieldsArr[index].visibility;
 
                         this.$store.commit('resetIsFocused', {});
-                        /*if (this.prevIndex !== null) {
-                            this.$store.commit('updateFieldIsFocused', {index: this.prevIndex, visible: false});
-                        }*/
-
                         this.$store.commit('updateFieldIsFocused', {index: index, visible: true});
-
-                        /*this.fieldsArr.forEach(function (field) {
-                            field.isFocused = false;
-                        });
-                        this.fieldsArr[index].isFocused = true;*/
                     }
                 },
                 nameToggle: function(num) {
@@ -647,19 +600,6 @@
 
                     //this.$store.commit('updateFieldIsFocused', {index: this.activeIndex, visible: this.visibility});
                     //this.fields[this.activeIndex].visibility = this.visibility;
-                },
-                updateLabel: function(index) {
-                    var text = $("[contenteditable='true']").eq(index).text();
-                    console.log(index)
-
-                    this.fieldsArr[index].label = text;
-                },
-                updateSubHeader: function(index) {
-                    var text = $(".editable-sub-" + index).eq(0).text();
-
-                    // reupdate text to deal with bug of vue being updated
-                    // and rendering text twice
-                    $(".editable-sub-" + index).eq(0).text(text);
                 }
             }
         },
@@ -772,11 +712,11 @@
             EmailElement,
             AddressElement,
             InputElement,
+            TagnameProperty,
             TextareaElement,
             CheckboxesElement,
             RadioButtonsElement,
             SelectElement
         }
     }
-
 </script>

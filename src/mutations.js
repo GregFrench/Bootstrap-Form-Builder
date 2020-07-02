@@ -17,7 +17,10 @@ export default {
     updateFieldIsFocused(state, payload) {
         state.fields[payload.index].isFocused = payload.visible
     },
-    updateTagname(state, payload) {
+    updateFieldLabel(state, payload) {
+        state.fields[payload.index].label = payload.label
+    },
+    updateFieldTagname(state, payload) {
         state.fields[payload.index].tagname = payload.tagname
     }
 };
