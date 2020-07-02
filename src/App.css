@@ -184,11 +184,15 @@ a {
     padding-bottom: 10px;
 }
 
+[contenteditable] {
+    cursor: pointer;
+}
+
 [contenteditable]:focus {
     outline: 0px solid transparent;
 }
 
-[contentEditable=true]:empty:not(:focus):before{
+[contentEditable=true]:empty:before{
     content:attr(data-text)
 }
 

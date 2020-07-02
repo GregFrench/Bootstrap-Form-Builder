@@ -3,9 +3,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App'
+import contenteditable from 'vue-contenteditable'
 import Store from './store'
 
 Vue.use(Vuex)
+Vue.use(contenteditable)
+
+window.Vue = Vue;
 
 const store = new Vuex.Store(Store);
 

@@ -13,6 +13,7 @@ import $ from 'jquery';
 export default {
   props: ['field', 'index', 'fields'],
   data: function () {
+    console.log('test')
     return { fieldsRef: this.fields }
   },
   methods: {

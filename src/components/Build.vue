@@ -8,7 +8,7 @@
             Add Form Element
         </div>
         <div class="circle-normal"><span class="glyphicon glyphicon-plus"></span></div>
-        
+
         <div class="circle-ripple circle-ripple-1"></div>
         <div class="circle-ripple circle-ripple-2"></div>
     </div>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="sortable-container">
-        <div v-bind:class="{ 'sortable-border': fields.length === 0 }" class="sortable">
+        <div v-bind:class="{ 'sortable-border': fieldsArr.length === 0 }" class="sortable">
             <div :id="'list-' + index" v-on:click="elementFocus(index)" v-bind:class="{ 'focused-element': field.isFocused === true }" tabindex="-1" class="form-group form-element-container" v-for="(field, index) in fieldsArr" :key="field.id">
                 <div v-bind:class="{ hide: field.isFocused === false }" class="action-circles">
 
@@ -90,58 +90,51 @@
                     </div>
                 </div>
 
+                Focused: {{field.isFocused}}
+
                 <HeaderElement
                     v-if="field.type === 'header'"
-                  v-bind:class="field.textalign"
-                  v-bind:field="field"
-                  v-bind:index="index"
-                  v-bind:fields="fields"
-                  >
-                </HeaderElement>
+                    v-bind:class="field.textalign"
+                    v-bind:field="field"
+                    v-bind:index="index"
+                    v-bind:fields="fieldsArr"
+                ></HeaderElement>
 
                 <NameElement
                   v-if="field.type === 'name'"
                   v-bind:field="field"
-                  >
-                </NameElement>
+                ></NameElement>
 
                 <InputElement
                   v-if="field.type === 'text'"
                   v-bind:field="field"
-                  >
-                </InputElement>
+                  ></InputElement>
 
                 <EmailElement
                   v-if="field.type === 'email'"
                   v-bind:field="field"
                   v-bind:index="index"
-                  v-bind:fields="fields"
-                  >
-                </EmailElement>
+                  ></EmailElement>
 
                 <AddressElement
                   v-if="field.type === 'address'"
                   v-bind:field="field"
-                  >
-                </AddressElement>
+                ></AddressElement>
 
                 <TextareaElement
                   v-if="field.type === 'textarea'"
                   v-bind:field="field"
-                  >
-                </TextareaElement>
+                ></TextareaElement>
 
                 <CheckboxesElement
                   v-if="field.type === 'checkboxes'"
                   v-bind:field="field"
-                  >
-                </CheckboxesElement>
+                ></CheckboxesElement>
 
                 <RadioButtonsElement
                   v-if="field.type === 'radio_buttons'"
                   v-bind:field="field"
-                  >
-                </RadioButtonsElement>
+                ></RadioButtonsElement>
 
                 <SelectElement
                   v-if="field.type === 'select'"
@@ -240,9 +233,9 @@
                 </div>
             </div>
         </div>
-        <div v-if="type === 'name' && typeof fields[activeIndex] !== 'undefined'">
+        <div v-if="type === 'name' && typeof fieldsArr[activeIndex] !== 'undefined'">
             <div class="element-property">
-                <div class="row" v-for="subfield in activeSubFields(fields[activeIndex].subfields)">
+                <div class="row" v-for="subfield in activeSubFields(fieldsArr[activeIndex].subfields)">
                     <div class="col-sm-6">{{subfield.label_display}}</div>
                     <div class="col-sm-6 col-padding">
                         <input type="text" class="form-control" v-model="subfield.label">
@@ -358,7 +351,7 @@
                 // setter
                 set: function (tagname) {
                     this.tagname = tagname;
-                    this.fields[this.activeIndex].tagname = tagname;
+                    //this.fields[this.activeIndex].tagname = tagname;
                     this.$store.commit('updateTagname', {
                         index: this.activeIndex,
                         tagname: tagname
@@ -519,11 +512,12 @@
                     }
                 },
                 activeIndex: null,
-                fields: [],
+                //fields: [],
                 hasFields: false,
                 label: null,
                 middleName: null,
                 options: "",
+                prevIndex: null,
                 showAddForm: true,
                 showElementProperties: false,
                 subfields: [],
@@ -540,7 +534,7 @@
                     });
                 },
                 activeIndexSubFields: function() {
-                    return this.fields[this.activeIndex].subfields.filter(function(subfield) {
+                    return this.fieldsArr[this.activeIndex].subfields.filter(function(subfield) {
 
                         return subfield.active === 1;
 
@@ -551,18 +545,18 @@
                     this.showElementProperties = false;
                 },
                 addressToggle: function(num) {
-                    if (this.fields[this.activeIndex].subfields[num].active === true) {
-                        this.fields[this.activeIndex].subfields[num].active = 1;
+                    if (this.fieldsArr[this.activeIndex].subfields[num].active === true) {
+                        this.fieldsArr[this.activeIndex].subfields[num].active = 1;
                     } else {
-                        this.fields[this.activeIndex].subfields[num].active = 0;
+                        this.fieldsArr[this.activeIndex].subfields[num].active = 0;
                     }
                 },
                 // delete field by deleting element from page, array, and db
                 deleteElement: function(index) {
-                    this.fields.splice(index, 1);
+                    this.fieldsArr.splice(index, 1);
                 },
                 duplicate: function() {
-                    this.receiveElement(JSON.parse(JSON.stringify(this.fields[this.activeIndex])), this.activeIndex + 1);
+                    this.receiveElement(JSON.parse(JSON.stringify(this.fieldsArr[this.activeIndex])), this.activeIndex + 1);
                     this.elementFocus(this.activeIndex + 1);
                 },
                 editElementProperties: function(index) {
@@ -570,65 +564,66 @@
                     this.showElementProperties = true;
                 },
                 editLabel: function() {
-                    this.fields[this.activeIndex].label = this.label;
+                    this.fieldsArr[this.activeIndex].label = this.label;
                 },
                 editOptions: function() {
-                    this.fields[this.activeIndex].options = this.options;
+                    this.fieldsArr[this.activeIndex].options = this.options;
                 },
                 editSubHeader: function() {
-                    this.fields[this.activeIndex].subheader = this.subheader;
+                    this.fieldsArr[this.activeIndex].subheader = this.subheader;
                 },
                 editTextAlign: function(textalign) {
-                    this.fields[this.activeIndex].textalign = textalign;
+                    this.fieldsArr[this.activeIndex].textalign = textalign;
                 },
                 elementFocus: function(index) {
-                    if (this.fields[index] !== undefined) {
-
+                  console.log('elementFocus ' + index)
+                    if (this.fieldsArr[index] !== undefined) {
                         this.activeIndex = index;
-                        this.label = this.fields[index].label;
-                        this.options = this.fields[index].options;
-                        this.type = this.fields[index].type;
-                        this.tagname = this.fields[index].tagname;
-                        this.textalign = this.fields[index].textalign;
-                        this.subfields = this.fields[index].subfields;
-                        this.subheader = this.fields[index].subheader;
-                        this.visibility = this.fields[index].visibility;
+                        this.label = this.fieldsArr[index].label;
+                        this.options = this.fieldsArr[index].options;
+                        this.type = this.fieldsArr[index].type;
+                        this.tagname = this.fieldsArr[index].tagname;
+                        this.textalign = this.fieldsArr[index].textalign;
+                        this.subfields = this.fieldsArr[index].subfields;
+                        this.subheader = this.fieldsArr[index].subheader;
+                        this.visibility = this.fieldsArr[index].visibility;
 
-                        this.fields.forEach(function (field) {
+                        this.$store.commit('resetIsFocused', {});
+                        /*if (this.prevIndex !== null) {
+                            this.$store.commit('updateFieldIsFocused', {index: this.prevIndex, visible: false});
+                        }*/
 
+                        this.$store.commit('updateFieldIsFocused', {index: index, visible: true});
+
+                        /*this.fieldsArr.forEach(function (field) {
                             field.isFocused = false;
-
                         });
-
-                        this.fields[index].isFocused = true;
+                        this.fieldsArr[index].isFocused = true;*/
                     }
                 },
                 nameToggle: function(num) {
-                    if (this.fields[this.activeIndex].subfields[num].active === true) {
-                        this.fields[this.activeIndex].subfields[num].active = 1;
+                    if (this.fieldsArr[this.activeIndex].subfields[num].active === true) {
+                        this.fieldsArr[this.activeIndex].subfields[num].active = 1;
                     } else {
-                        this.fields[this.activeIndex].subfields[num].active = 0;
+                        this.fieldsArr[this.activeIndex].subfields[num].active = 0;
                     }
                 },
                 receiveElement: function(element, newIndex) {
-                    this.fields.splice(newIndex, 0, {
-                        id: this.fields.length,
-                        name: element.name,
-                        type: element.type,
-                        label: element.label,
-                        options: element.options,
-                        subfields: element.subfields,
-                        subheader: element.subheader,
-                        subheader_update: true,
-                        placeholder: element.placeholder,
-                        tagname: element.tagname,
-                        textalign: element.textalign,
-                        visibility: element.visibility,
-                        isFocused: true,
-                        order_rank: newIndex
+                    this.$store.commit('addFieldElement', {
+                        index: newIndex,
+                        element: {
+                            id: this.fieldsArr.length,
+                            type: element.type,
+                            options: element.options,
+                            subfields: element.subfields,
+                            subheader: element.subheader,
+                            subheader_update: true,
+                            placeholder: element.placeholder,
+                            visibility: element.visibility,
+                            isFocused: false,
+                            order_rank: newIndex
+                        }
                     });
-
-                    this.$store.commit('updateFields', {fields: this.fields});
                 },
                 removeElementProperties: function() {
                     this.showElementProperties = false;
@@ -638,31 +633,26 @@
                 },
                 subfieldsNameToggle: function(subfields) {
                     return subfields.filter(function(subfield) {
-
                         return subfield.type === 'prefix' ||
                         subfield.type === 'middle_name' ||
                         subfield.type === 'suffix';
-
                     });
                 },
                 switchToggle: function() {
                     if (this.visibility === true) {
-
                         this.visibility = "hidden";
-                        
                     } else {
-
                         this.visibility = null;
-
                     }
 
-                    this.fields[this.activeIndex].visibility = this.visibility;
+                    //this.$store.commit('updateFieldIsFocused', {index: this.activeIndex, visible: this.visibility});
+                    //this.fields[this.activeIndex].visibility = this.visibility;
                 },
                 updateLabel: function(index) {
                     var text = $("[contenteditable='true']").eq(index).text();
                     console.log(index)
 
-                    this.fields[index].label = text;
+                    this.fieldsArr[index].label = text;
                 },
                 updateSubHeader: function(index) {
                     var text = $(".editable-sub-" + index).eq(0).text();
@@ -673,19 +663,16 @@
                 }
             }
         },
-
         mounted() {
             var that = this;
 
-            $('body').click(function (evt){   
-
+            $('body').click(function (evt){
                 if (evt.target.className == "form-element-container" ||
                     evt.target.className == "element-properties") {
                     return;
                 }
 
                 // For descendants of "form-element-container" being clicked, remove this check if you do not want to put constraint on descendants.
-                
                 if ($(evt.target).closest('.form-element-container').length ||
                     $(evt.target).closest('.element-properties').length) {
                     return;
@@ -697,11 +684,19 @@
                     return;
                 }
 
-                that.fields.forEach(function (field) {
-                    field.isFocused = false;
-                    that.showElementProperties = false;
-                });
+                console.log('test it')
 
+                that.$store.commit('resetIsFocused', {});
+                /*if (that.prevIndex !== null) {
+                  console.log('gone through')
+                    that.$store.commit('updateFieldIsFocused', {index: that.prevIndex, visible: false});
+                }*/
+
+               /* that.fieldsArr.forEach(function (field) {
+                    field.isFocused = false;
+                });*/
+
+                that.showElementProperties = false;
             });
 
             function setHeight() {
@@ -746,22 +741,23 @@
 
                         $(this).removeAttr('data-previndex');
                         $(ui.helper).replaceWith("");
-                        
+
                         that.receiveElement(element, newIndex);
                         that.elementFocus(newIndex);
+
+                        that.prevIndex = newIndex;
                     }
                 },
                 update: function (event, ui) {
                     if (ui.item.index() !== -1) {
+                      alert('test')
                         var newIndex = ui.item.index();
-
                         var oldIndex = parseInt($(this).attr('data-previndex'));
-                        $(this).removeAttr('data-previndex');
 
+                        $(this).removeAttr('data-previndex');
                         $(ui.helper).replaceWith("");
 
-                        that.fields.splice(newIndex, 0, that.fields.splice(oldIndex, 1)[0]);
-
+                        that.fieldsArr.splice(newIndex, 0, that.fieldsArr.splice(oldIndex, 1)[0]);
                         that.$store.commit('updateFields', {fields: that.fields});
 
                         that.elementFocus(newIndex);
