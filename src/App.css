@@ -267,6 +267,7 @@ a {
 .editable {
     cursor: default;
     display: inline-block;
+    min-width: 100px;
 }
 
 .element-code {

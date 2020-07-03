@@ -95,7 +95,6 @@
                     v-bind:class="field.textalign"
                     v-bind:field="field"
                     v-bind:index="index"
-                    v-bind:fields="fieldsArr"
                 ></HeaderElement>
 
                 <NameElement
@@ -268,22 +267,6 @@
                 </div>
             </div>
         </div>
-        <div class="element-property">
-            <label>Hide field</label>
-            <div>
-                <label class="switch">
-                    <input type="checkbox" value="hidden" v-on:click="switchToggle()" v-model="visibility">
-                    <div class="slider">
-                        <div class="switch-on" v-bind:class="{'switch-on-active': visibility === 'hidden'}">
-                            ON
-                        </div>
-                        <div class="switch-off" v-bind:class="{'switch-off-active': visibility === 'hidden'}">
-                            OFF
-                        </div>
-                    </div>
-                </label>
-            </div>
-        </div>
     </div>
 
 </div>
@@ -312,10 +295,6 @@
     import { mapState } from 'vuex'
 
     export default {
-        /*computed: mapState([
-          // map this.count to store.state.count
-          'count'
-        ]),*/
         computed: {
             // change name to 'fields' after switch
             fieldsArr () {
@@ -325,6 +304,9 @@
         data() {
             return {
                 elements: {
+                    "header": {
+                        type: "header"
+                    },
                     "name": {
                         name: "name",
                         label: "Name",
@@ -475,7 +457,6 @@
                     }
                 },
                 activeIndex: null,
-                //fields: [],
                 hasFields: false,
                 label: null,
                 middleName: null,
@@ -539,7 +520,6 @@
                     this.fieldsArr[this.activeIndex].textalign = textalign;
                 },
                 elementFocus: function(index) {
-                  console.log('elementFocus ' + index)
                     if (this.fieldsArr[index] !== undefined) {
                         this.activeIndex = index;
                         this.label = this.fieldsArr[index].label;
@@ -590,16 +570,6 @@
                         subfield.type === 'middle_name' ||
                         subfield.type === 'suffix';
                     });
-                },
-                switchToggle: function() {
-                    if (this.visibility === true) {
-                        this.visibility = "hidden";
-                    } else {
-                        this.visibility = null;
-                    }
-
-                    //this.$store.commit('updateFieldIsFocused', {index: this.activeIndex, visible: this.visibility});
-                    //this.fields[this.activeIndex].visibility = this.visibility;
                 }
             }
         },
@@ -624,17 +594,7 @@
                     return;
                 }
 
-                console.log('test it')
-
                 that.$store.commit('resetIsFocused', {});
-                /*if (that.prevIndex !== null) {
-                  console.log('gone through')
-                    that.$store.commit('updateFieldIsFocused', {index: that.prevIndex, visible: false});
-                }*/
-
-               /* that.fieldsArr.forEach(function (field) {
-                    field.isFocused = false;
-                });*/
 
                 that.showElementProperties = false;
             });
@@ -672,13 +632,7 @@
                     if (ui.item.attr("id")) {
                         var newIndex = parseInt($(this).data("ui-sortable").currentItem.index()),
                             element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
-                        // temp
-                        if (ui.item.attr("id") == "header") {
-                            var element = {type: 'header'};
-                        } else {
-                            var element = $.extend(true, {}, that.elements[ui.item.attr("id")]);
-                        }
-
+                        
                         $(this).removeAttr('data-previndex');
                         $(ui.helper).replaceWith("");
 
@@ -690,7 +644,6 @@
                 },
                 update: function (event, ui) {
                     if (ui.item.index() !== -1) {
-                      alert('test')
                         var newIndex = ui.item.index();
                         var oldIndex = parseInt($(this).attr('data-previndex'));
 

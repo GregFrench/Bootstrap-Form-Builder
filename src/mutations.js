@@ -20,6 +20,9 @@ export default {
     updateFieldLabel(state, payload) {
         state.fields[payload.index].label = payload.label
     },
+    updateFieldSubHeader(state, payload) {
+        state.fields[payload.index].subheader = payload.subheader
+    },
     updateFieldTagname(state, payload) {
         state.fields[payload.index].tagname = payload.tagname
     }
