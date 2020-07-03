@@ -1,84 +1,23 @@
 <template>
-<div>
-    <h1 v-if="field.tagname === 'h1' || field.tagname === undefined">
-        <span
-            class="editable editable-label"
-            contenteditable="true"
-            v-on:focusout="updateLabel($event, index)"
-        >{{field.label === undefined ? custom.label : field.label}}</span><br />
-        <small class="editable"
-            data-text="Type a subheader"
-            contenteditable="true"
-            ref="subheader"
-            v-on:focusout="updateSubHeader($event, index)"
-        >{{field.subheader}}</small>
-    </h1>
-
-    <h2 v-if="field.tagname === 'h2'">
-        <span
-            class="editable editable-label"
-            contenteditable="true"
-            v-on:focusout="updateLabel($event, index)"
-        >{{field.label === undefined ? custom.label : field.label}}</span><br />
-        <small class="editable"
-            data-text="Type a subheader"
-            contenteditable="true"
-            ref="subheader"
-            v-on:focusout="updateSubHeader($event, index)"
-        >{{field.subheader}}</small>
-    </h2>
-    <h3 v-if="field.tagname === 'h3'">
-        <span
-            class="editable editable-label"
-            contenteditable="true"
-            v-on:focusout="updateLabel($event, index)"
-        >{{field.label === undefined ? custom.label : field.label}}</span><br />
-        <small class="editable"
-            data-text="Type a subheader"
-            contenteditable="true"
-            ref="subheader"
-            v-on:focusout="updateSubHeader($event, index)"
-        >{{field.subheader}}</small>
-    </h3>
-    <h4 v-if="field.tagname === 'h4'">
-        <span
-            class="editable editable-label"
-            contenteditable="true"
-            v-on:focusout="updateLabel($event, index)"
-        >{{field.label === undefined ? custom.label : field.label}}</span><br />
-        <small class="editable"
-            data-text="Type a subheader"
-            contenteditable="true"
-            ref="subheader"
-            v-on:focusout="updateSubHeader($event, index)"
-        >{{field.subheader}}</small>
-    </h4>
-    <h5 v-if="field.tagname === 'h5'">
-        <span
-            class="editable editable-label"
-            contenteditable="true"
-            v-on:focusout="updateLabel($event, index)"
-        >{{field.label === undefined ? custom.label : field.label}}</span><br />
-        <small class="editable"
-            data-text="Type a subheader"
-            contenteditable="true"
-            ref="subheader"
-            v-on:focusout="updateSubHeader($event, index)"
-        >{{field.subheader}}</small>
-    </h5>
-    <h6 v-if="field.tagname === 'h6'">
-        <span
-            class="editable editable-label"
-            contenteditable="true"
-            v-on:focusout="updateLabel($event, index)"
-        >{{field.label === undefined ? custom.label : field.label}}</span><br />
-        <small class="editable"
-            data-text="Type a subheader"
-            contenteditable="true"
-            ref="subheader"
-            v-on:focusout="updateSubHeader($event, index)"
-        >{{field.subheader}}</small>
-    </h6>
+<div v-bind:class="{
+    h1: field.tagname === 'h1' || field.tagname === undefined,
+    h2: field.tagname === 'h2',
+    h3: field.tagname === 'h3',
+    h4: field.tagname === 'h4',
+    h5: field.tagname === 'h5',
+    h6: field.tagname === 'h6'
+}">
+    <span
+        class="editable editable-label"
+        contenteditable="true"
+        v-on:focusout="updateLabel($event, index)"
+    >{{field.label === undefined ? custom.label : field.label}}</span><br />
+    <small class="editable"
+        data-text="Type a subheader"
+        contenteditable="true"
+        ref="subheader"
+        v-on:focusout="updateSubHeader($event, index)"
+    >{{field.subheader}}</small>
 </div>
 </template>
 
