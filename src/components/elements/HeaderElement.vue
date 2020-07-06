@@ -8,22 +8,23 @@
     h6: field.tagname === 'h6'
 }">
     <span
-        class="editable editable-label"
-        contenteditable="true"
-        v-on:focusout="updateLabel($event, index)"
+      class="editable editable-label"
+      contenteditable="true"
+      v-on:focusout="updateLabel($event, index)"
     >{{field.label === undefined ? custom.label : field.label}}</span><br />
-    <small class="editable"
-        data-text="Type a subheader"
-        contenteditable="true"
-        ref="subheader"
-        v-on:focusout="updateSubHeader($event, index)"
+    <small
+      class="editable"
+      data-text="Type a subheader"
+      :contenteditable="isFocused ? true : false"
+      ref="subheader"
+      v-on:focusout="updateSubHeader($event, index)"
     >{{field.subheader}}</small>
 </div>
 </template>
 
 <script>
 export default {
-  props: ['field', 'index'],
+  props: ['field', 'index', 'isFocused'],
   methods: {
     updateLabel(e, index) {
       this.$store.commit('updateFieldLabel', { index, label: e.target.innerHTML });

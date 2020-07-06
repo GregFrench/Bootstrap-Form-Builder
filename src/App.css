@@ -117,7 +117,7 @@ a {
   top: 0;
   width: 54px;
   z-index: 0;
-  
+
 }
 
 .circle-normal {
@@ -184,11 +184,8 @@ a {
   padding-bottom: 10px;
 }
 
-[contenteditable] {
-  cursor: pointer;
-}
-
 [contenteditable]:focus {
+  cursor: pointer;
   outline: 0px solid transparent;
 }
 
@@ -279,7 +276,6 @@ a {
   border-bottom: 1px solid #333a43;
   border-top: 1px solid #495261;
   color: #fff;
-  cursor: move;
   display: flex;
   font-size: 15px;
 }
@@ -356,12 +352,10 @@ a {
 }
 
 .element-text {
-  //border-bottom: 1px solid #212121;
   font-size: 14px;
   height: 54px;
   padding: 18px;
   text-transform: uppercase;
-  //width: 246px;
   width: 300px;
 }
 
@@ -386,6 +380,7 @@ a {
 
 .focused-element {
   border: 2px solid #2196F3;
+  cursor: move;
 }
 
 footer.site-footer {
@@ -403,7 +398,6 @@ footer.site-footer {
 }
 
 .form-element-container {
-  cursor: move;
   padding: 12px 36px;
   margin: 0;
 }
@@ -430,10 +424,6 @@ footer.site-footer {
 .form-elements-header {
   text-align: center;
   text-transform: uppercase;
-}
-
-.form-elements-remove {
-  cursor: pointer;
 }
 
 .form-input {
@@ -477,10 +467,6 @@ footer.site-footer {
 
 .home-text {
   font-size: 18px;
-}
-
-.home-wrapper {
-  
 }
 
 .home-wrapper-grey {
@@ -658,7 +644,6 @@ label.single-button {
 }
 
 .rotate-90 {
-  //margin-top: 10px;
   transform: rotate(90deg);
 }
 
@@ -670,8 +655,6 @@ label.single-button {
   background-color: #fff;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: 20px 15% 20px 20%;
-  //overflow: scroll;
-  //padding: 45px 20px;
   padding: 45px 0px;
   max-width: 690px;
 

@@ -82,14 +82,16 @@
 
   <div class="sortable-container">
     <div v-bind:class="{ 'sortable-border': fieldsArr.length === 0 }" class="sortable">
-    <div
-      :id="'list-' + index"
-      v-on:click="elementFocus(index)"
-      v-bind:class="{ 'focused-element': field.isFocused === true }"
-      tabindex="-1"
-      class="form-group form-element-container"
-      v-for="(field, index) in fieldsArr"
-      :key="field.id">
+      <div
+        :id="'list-' + index"
+        v-on:click="elementFocus(index)"
+        v-bind:class="{ 'focused-element': field.isFocused === true }"
+        tabindex="0"
+        class="form-group form-element-container"
+        v-for="(field, index) in fieldsArr"
+        :key="field.id"
+        ref="element"
+      >
       <div v-bind:class="{ hide: field.isFocused === false }" class="action-circles">
 
       <div v-on:click="editElementProperties()" class="action-circle properties-circle">
@@ -102,12 +104,13 @@
       </div>
     </div>
 
-                <HeaderElement
-                    v-if="field.type === 'header'"
-                    v-bind:class="field.textalign"
-                    v-bind:field="field"
-                    v-bind:index="index"
-                ></HeaderElement>
+    <HeaderElement
+      v-if="field.type === 'header'"
+      v-bind:class="field.textalign"
+      v-bind:field="field"
+      v-bind:index="index"
+      v-bind:isFocused="field.isFocused"
+    ></HeaderElement>
 
                 <NameElement
                   v-if="field.type === 'name'"
@@ -488,6 +491,9 @@ export default {
 
           this.$store.commit('resetIsFocused', {});
           this.$store.commit('updateFieldIsFocused', { index, visible: true });
+
+          // this.$nextTick(() => this.$refs.element.focus());
+          // window.getSelection().removeAllRanges();
         }
       },
       nameToggle(num) {
