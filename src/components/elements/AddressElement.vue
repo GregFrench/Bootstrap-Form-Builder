@@ -300,6 +300,6 @@
 
 <script>
 export default {
-  props: ["field"]
+    props: ["field"]
 }
 </script>

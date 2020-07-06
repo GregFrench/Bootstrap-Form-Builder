@@ -22,40 +22,17 @@
 </template>
 
 <script>
-import $ from 'jquery';
 export default {
-    props: ["field", "index", "fields"],
-    data: function () {
-        return {
-          message: 'Type a subheader',
-            custom: {
-                name: "header",
-                label: "Header",
-                subheader: "",
-                tagname: "h1",
-                textalign: "text-left",
-                subfields: []
-            }
+    props: ["field", "index"],
+    methods: {
+        updateLabel: function(e, index) {
+            this.$store.commit("updateFieldLabel", {index: index, label: e.target.innerHTML});
+        },
+        updateSubHeader: function(e, index) {
+            let text = e.target.innerHTML
+            this.$store.commit("updateFieldSubHeader", {index: index, subheader: text});
+            this.$refs.subheader.innerHTML = text;
+        }
     }
-  },
-  methods: {
-      updateLabel: function(e, index) {
-          this.$store.commit("updateFieldLabel", {index: index, label: e.target.innerHTML});
-      },
-      updateSubHeader: function(e, index) {
-        let text = e.target.innerHTML
-        this.$store.commit("updateFieldSubHeader", {index: index, subheader: text});
-        this.$refs.subheader.innerHTML = text;
-      }
-  },
-  mounted() {
-    //if (field.name === undefined) {
-      this.$store.commit('updateFieldElement', {
-          index: this.index,
-          data: this.custom
-      });
-    //}
-  }
 }
-
 </script>

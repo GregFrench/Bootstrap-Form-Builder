@@ -1,15 +1,15 @@
 {
   "name": "bootstrap-form-builder",
   "version": "1.0.0",
+  "private": true,
   "description": "Drag and drop Bootstrap form builder",
   "author": "Greg French <gregfrench26@gmail.com>",
-  "homepage": "https://github.com/GregFrench/Bootstrap-Form-Builder",
-  "private": true,
   "scripts": {
+    "build": "node build/build.js",
+    "deploy": "node ./node_modules/vue-gh-pages/index.js",
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js",
-    "deploy": "node ./node_modules/vue-gh-pages/index.js"
+    "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
     "html-beautify": "1.0.4",
@@ -23,6 +23,8 @@
     "vuex": "^2.3.1"
   },
   "devDependencies": {
+    "@vue/cli-plugin-unit-jest": "4.4.6",
+    "@vue/test-utils": "^1.0.3",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -58,13 +60,14 @@
     "webpack-hot-middleware": "^2.18.0",
     "webpack-merge": "^4.1.0"
   },
-  "engines": {
-    "node": ">= 4.0.0",
-    "npm": ">= 3.0.0"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "engines": {
+    "node": ">= 4.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "homepage": "https://github.com/GregFrench/Bootstrap-Form-Builder"
 }
