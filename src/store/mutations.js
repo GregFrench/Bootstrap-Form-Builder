@@ -10,6 +10,9 @@ export default {
       return theField;
     });
   },
+  toggleElementsSidebar(state, payload) {
+    state.showElementsSidebar = payload.state;
+  },
   updateFields(state, payload) {
     state.fields = payload.fields;
   },

@@ -3,7 +3,7 @@
     <AppHeader></AppHeader>
 
 <div class="content-container build-container build-body">
-  <div v-on:click="addFormElements()" v-if="showAddForm" class="add-form">
+  <div v-on:click="openElementsSidebar()" v-if="!showElementsSidebar" class="add-form">
     <div class="add-form-text">
       Add Form Element
     </div>
@@ -13,72 +13,7 @@
     <div class="circle-ripple circle-ripple-2"></div>
   </div>
 
-    <div v-bind:class="{ 'form-elements-show': showAddForm === false }" class="form-elements">
-        <div class="element-main-header">Form Elements
-        <span
-            v-on:click="removeFormElements()"
-            class="glyphicon glyphicon-remove pull-right form-elements-remove"
-            ></span>
-        </div>
-
-        <div id="header" class="element-container">
-            <div class="element-icon">
-                <span class="glyphicon glyphicon-header"></span>
-            </div>
-            <div class="element-text">
-                Header
-            </div>
-        </div>
-        <div id="name" class="element-container">
-            <div class="element-icon">
-                <span class="glyphicon glyphicon-user"></span>
-            </div>
-            <div class="element-text">
-                Full Name
-            </div>
-        </div>
-        <div id="email" class="element-container">
-            <div class="element-icon">
-                <span class="glyphicon glyphicon-envelope"></span>
-            </div>
-            <div class="element-text">
-                Email
-            </div>
-        </div>
-        <div id="address" class="element-container">
-            <div class="element-icon">
-                <span class="glyphicon glyphicon-map-marker"></span>
-            </div>
-            <div class="element-text">
-                Address
-            </div>
-        </div>
-        <div id="input" class="element-container">
-            <div class="element-text">
-                Input
-            </div>
-        </div>
-        <div id="textarea" class="element-container">
-            <div class="element-text">
-                Textarea
-            </div>
-        </div>
-        <div id="checkboxes" class="element-container">
-            <div class="element-text">
-                Checkboxes
-            </div>
-        </div>
-        <div id="radio_buttons" class="element-container">
-            <div class="element-text">
-                Radio Buttons
-            </div>
-        </div>
-        <div id="select" class="element-container">
-            <div class="element-text">
-                Select
-            </div>
-        </div>
-    </div>
+  <ElementsSidebar v-bind:showElementsSidebar="showElementsSidebar" />
 
   <div class="sortable-container">
     <div v-bind:class="{ 'sortable-border': fieldsArr.length === 0 }" class="sortable">
@@ -387,6 +322,8 @@
 <script>
 import $ from 'jquery';
 import AppHeader from '../components/AppHeader.vue';
+import ElementsSidebar from '../components/ElementsSidebar.vue';
+
 import HeaderElement from '../components/elements/HeaderElement.vue';
 import NameElement from '../components/elements/NameElement.vue';
 import EmailElement from '../components/elements/EmailElement.vue';
@@ -410,6 +347,9 @@ export default {
     // change name to 'fields' after switch
     fieldsArr() {
       return this.$store.state.fields;
+    },
+    showElementsSidebar() {
+      return this.$store.state.showElementsSidebar;
     },
   },
   data() {
@@ -530,6 +470,11 @@ export default {
       removeFormElements() {
         this.showAddForm = true;
       },
+      openElementsSidebar() {
+        this.$store.commit('toggleElementsSidebar', {
+          state: true,
+        });
+      },
       subfieldsNameToggle(subfields) {
         return subfields.filter((subfield) => subfield.type === 'prefix'
                         || subfield.type === 'middle_name'
@@ -626,6 +571,7 @@ export default {
   },
   components: {
     AppHeader,
+    ElementsSidebar,
     HeaderElement,
     NameElement,
     EmailElement,

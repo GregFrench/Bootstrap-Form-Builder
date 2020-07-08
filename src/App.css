@@ -417,6 +417,10 @@ footer.site-footer {
   transition-timing-function: ease;
 }
 
+.form-elements-remove {
+  cursor: pointer;
+}
+
 .form-elements-show {
   margin-left: 0px;
 }
