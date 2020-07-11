@@ -14,6 +14,7 @@
     "jquery-ui": "1.12.1",
     "pretty": "2.0.0",
     "vue": "^2.6.11",
+    "vue-contenteditable": "1.0.2",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },

@@ -13,6 +13,12 @@ export default {
   toggleElementsSidebar(state, payload) {
     state.showElementsSidebar = payload.state;
   },
+  togglePropertiesSidebar(state, payload) {
+    state.showPropertiesSidebar = payload.state;
+  },
+  updateField(state, payload) {
+    state.fields[state.activeIndex][payload.field] = payload.value;
+  },
   updateFields(state, payload) {
     state.fields = payload.fields;
   },
@@ -22,13 +28,16 @@ export default {
   updateFieldIsFocused(state, payload) {
     state.fields[payload.index].isFocused = payload.visible;
   },
-  updateFieldLabel(state, payload) {
-    state.fields[payload.index].label = payload.label;
+  updateFieldLabel(state, label) {
+    state.fields[state.activeIndex].label = label;
   },
-  updateFieldSubHeader(state, payload) {
-    state.fields[payload.index].subheader = payload.subheader;
+  updateFieldSubHeader(state, value) {
+    state.fields[state.activeIndex].subheader = value;
   },
   updateFieldTagname(state, payload) {
     state.fields[payload.index].tagname = payload.tagname;
+  },
+  updateFieldTextAlign(state, value) {
+    state.fields[state.activeIndex].textalign = value;
   },
 };

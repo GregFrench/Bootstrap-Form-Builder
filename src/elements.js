@@ -2,10 +2,21 @@ export default {
   header: {
     name: 'header',
     label: 'Header',
+    subheader: '',
     type: 'header',
     tagname: 'h1',
     textalign: 'text-left',
-    subfields: [],
+    html: {
+      type: 'element',
+      value: '{tagname}',
+      classNames: ['{textalign}'],
+      children: [{
+        type: 'text',
+        value: '{label}',
+      }, {
+        type: 'break',
+      }],
+    },
   },
   name: {
     name: 'name',
@@ -60,7 +71,6 @@ export default {
     type: 'email',
     placeholder: 'email',
     tagname: 'input',
-    subfields: [],
   },
   address: {
     name: 'address',
@@ -122,14 +132,12 @@ export default {
     label: 'Input',
     type: 'text',
     tagname: 'input',
-    subfields: [],
   },
   textarea: {
     name: 'textarea',
     label: 'Textarea',
     type: 'textarea',
     tagname: 'textarea',
-    subfields: [],
   },
   checkboxes: {
     name: 'checkboxes',
@@ -137,7 +145,6 @@ export default {
     type: 'checkboxes',
     tagname: 'input',
     options: 'Option 1\nOption 2\nOption 3',
-    subfields: [],
   },
   radio_buttons: {
     name: 'radio_buttons',
@@ -145,7 +152,6 @@ export default {
     type: 'radio_buttons',
     tagname: 'input',
     options: 'Option 1\nOption 2\nOption 3',
-    subfields: [],
   },
   select: {
     name: 'select',
@@ -153,6 +159,5 @@ export default {
     type: 'select',
     tagname: 'select',
     options: 'Option 1\nOption 2\nOption 3',
-    subfields: [],
   },
 };

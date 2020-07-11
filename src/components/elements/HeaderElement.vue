@@ -1,38 +1,51 @@
 <template>
   <div v-bind:class="{
-      h1: field.tagname === 'h1' || field.tagname === undefined,
-      h2: field.tagname === 'h2',
-      h3: field.tagname === 'h3',
-      h4: field.tagname === 'h4',
-      h5: field.tagname === 'h5',
-      h6: field.tagname === 'h6'
+    h1: field.tagname === 'h1',
+    h2: field.tagname === 'h2',
+    h3: field.tagname === 'h3',
+    h4: field.tagname === 'h4',
+    h5: field.tagname === 'h5',
+    h6: field.tagname === 'h6'
   }">
     <span
       class="editable editable-label"
       contenteditable="true"
-      v-on:focusout="updateLabel($event, index)"
-    >{{field.label === undefined ? custom.label : field.label}}</span><br />
+      @focusout="updateLabel"
+    >{{field.label}}</span><br />
     <small
       class="editable"
+    ><contenteditable
       data-text="Type a subheader"
-      :contenteditable="isFocused ? true : false"
-      ref="subheader"
-      v-on:focusout="updateSubHeader($event, index)"
-    >{{field.subheader}}</small>
+      tag="div"
+      v-model="subHeader"
+      :noNL="true"
+    />
+    </small>
+
   </div>
 </template>
 
 <script>
 export default {
-  props: ['field', 'index', 'isFocused'],
-  methods: {
-    updateLabel(e, index) {
-      this.$store.commit('updateFieldLabel', { index, label: e.target.innerHTML });
+  props: ['field'],
+  computed: {
+    subHeader: {
+      get() {
+        const state = { ...this.$store.state };
+
+        return state.fields[state.activeIndex].subheader;
+      },
+      set(value) {
+        this.$store.commit('updateFieldSubHeader', value);
+      },
     },
-    updateSubHeader(e, index) {
-      const text = e.target.innerHTML;
-      this.$store.commit('updateFieldSubHeader', { index, subheader: text });
-      this.$refs.subheader.innerHTML = text;
+  },
+  methods: {
+    updateLabel(e) {
+      this.$store.commit('updateFieldLabel', e.target.innerText);
+    },
+    updateSubHeader(result) {
+      this.$store.commit('updateFieldSubHeader', result);
     },
   },
 };
