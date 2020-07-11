@@ -7,7 +7,7 @@
       ></span>
     </div>
 
-    <div id="header" class="element-container">
+    <div id="header" class="element-container" v-on:click="test()">
       <div class="element-icon">
         <span class="glyphicon glyphicon-header"></span>
       </div>
@@ -68,13 +68,44 @@
 </template>
 
 <script>
+import elements from '../elements';
+
 export default {
   props: ['showElementsSidebar'],
+  computed: {
+    // change name to 'fields' after switch
+    fieldsArr() {
+      return this.$store.state.fields;
+    },
+  },
   data() {
     return {
       closeSidebar() {
         this.$store.commit('toggleElementsSidebar', {
           state: false,
+        });
+      },
+      test() {
+        const element = elements.header;
+
+        this.$store.commit('addFieldElement', {
+          index: this.fieldsArr.length - 1,
+          element: {
+            id: this.fieldsArr.length,
+            name: element.name,
+            type: element.type,
+            label: element.label,
+            options: element.options,
+            subfields: element.subfields,
+            subheader: element.subheader,
+            subheader_update: true,
+            placeholder: element.placeholder,
+            tagname: element.tagname,
+            textalign: element.textalign,
+            visibility: element.visibility,
+            isFocused: true,
+            order_rank: this.fieldsArr.length - 1,
+          },
         });
       },
     };
