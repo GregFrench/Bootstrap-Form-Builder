@@ -29,11 +29,10 @@ import elements from '../elements';
 export default {
   props: ['showElementsSidebar'],
   computed: {
-    // change name to 'fields' after switch
     elements() {
       return elements;
     },
-    fieldsArr() {
+    fields() {
       return this.$store.state.fields;
     },
   },
@@ -48,9 +47,9 @@ export default {
         const element = elements.find((el) => el.name === name);
 
         this.$store.commit('addFieldElement', {
-          index: this.fieldsArr.length,
+          index: this.fields.length,
           element: {
-            id: this.fieldsArr.length,
+            id: this.fields.length,
             name: element.name,
             type: element.type,
             label: element.label,
@@ -63,7 +62,7 @@ export default {
             textalign: element.textalign,
             visibility: element.visibility,
             isFocused: true,
-            order_rank: this.fieldsArr.length,
+            order_rank: this.fields.length,
           },
         });
       },

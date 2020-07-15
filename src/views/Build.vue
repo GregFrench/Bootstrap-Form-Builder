@@ -16,14 +16,14 @@
       <ElementsSidebar v-bind:showElementsSidebar="showElementsSidebar" />
 
       <div class="sortable-container">
-        <div v-bind:class="{ 'sortable-border': fieldsArr.length === 0 }" class="sortable">
+        <div v-bind:class="{ 'sortable-border': fields.length === 0 }" class="sortable">
           <div
             :id="'list-' + index"
             v-on:click="elementFocus(index)"
             v-bind:class="{ 'focused-element': field.isFocused === true }"
             tabindex="0"
             class="form-group form-element-container"
-            v-for="(field, index) in fieldsArr"
+            v-for="(field, index) in fields"
             :key="field.id"
             ref="element"
           >
@@ -123,8 +123,7 @@ import 'jquery-ui/ui/widgets/sortable';
 
 export default {
   computed: {
-    // change name to 'fields' after switch
-    fieldsArr() {
+    fields() {
       return this.$store.state.fields;
     },
     showElementsSidebar() {
@@ -141,7 +140,7 @@ export default {
       prevIndex: null,
       // delete field by deleting element from page, array, and db
       deleteElement(index) {
-        this.fieldsArr.splice(index, 1);
+        this.fields.splice(index, 1);
       },
       editElementProperties() {
         this.$store.commit('toggleElementsSidebar', {
@@ -153,7 +152,7 @@ export default {
         });
       },
       elementFocus(index) {
-        if (this.fieldsArr[index] !== undefined) {
+        if (this.fields[index] !== undefined) {
           this.$store.commit('updateActiveIndex', index);
 
           this.$store.commit('resetIsFocused', {});
@@ -167,7 +166,7 @@ export default {
         this.$store.commit('addFieldElement', {
           index: newIndex,
           element: {
-            id: this.fieldsArr.length,
+            id: this.fields.length,
             name: element.name,
             type: element.type,
             label: element.label,
@@ -264,7 +263,7 @@ export default {
           that.prevIndex = newIndex;
         }
       },
-      update(event, ui) {
+      /* update(event, ui) {
         if (ui.item.index() !== -1) {
           const newIndex = ui.item.index();
           const oldIndex = parseInt($(this).attr('data-previndex'), 10);
@@ -272,12 +271,12 @@ export default {
           $(this).removeAttr('data-previndex');
           $(ui.helper).replaceWith('');
 
-          that.fieldsArr.splice(newIndex, 0, that.fieldsArr.splice(oldIndex, 1)[0]);
+          that.fields.splice(newIndex, 0, that.fields.splice(oldIndex, 1)[0]);
           that.$store.commit('updateFields', { fields: that.fields });
 
           that.elementFocus(newIndex);
         }
-      },
+      }, */
     });
   },
   components: {

@@ -17,6 +17,13 @@ export default [{
       value: '{label}',
     }, {
       type: 'break',
+    }, {
+      type: 'element',
+      value: 'small',
+      children: [{
+        type: 'text',
+        value: '{subheader}',
+      }],
     }],
   },
 }, {
@@ -26,6 +33,7 @@ export default [{
   name: 'name',
   label: 'Name',
   type: 'name',
+  html: {},
   subfields: [{
     name: 'prefix',
     label: 'Prefix',
@@ -71,6 +79,7 @@ export default [{
   type: 'email',
   placeholder: 'email',
   tagname: 'input',
+  html: {},
 }, {
   id: 'address',
   text: 'Address',
@@ -78,6 +87,7 @@ export default [{
   name: 'address',
   label: 'Address',
   type: 'address',
+  html: {},
   subfields: [{
     name: 'street_address',
     label: 'Street Address',
@@ -128,6 +138,7 @@ export default [{
   label: 'Input',
   type: 'text',
   tagname: 'input',
+  html: {},
 }, {
   id: 'textarea',
   text: 'Textarea',
@@ -135,6 +146,7 @@ export default [{
   label: 'Textarea',
   type: 'textarea',
   tagname: 'textarea',
+  html: {},
 }, {
   id: 'checkboxes',
   text: 'Checkboxes',
@@ -143,6 +155,7 @@ export default [{
   type: 'checkboxes',
   tagname: 'input',
   options: 'Option 1\nOption 2\nOption 3',
+  html: {},
 }, {
   id: 'radio_buttons',
   text: 'Radio Buttons',
@@ -151,6 +164,7 @@ export default [{
   type: 'radio_buttons',
   tagname: 'input',
   options: 'Option 1\nOption 2\nOption 3',
+  html: {},
 }, {
   id: 'select',
   text: 'Select',
@@ -159,4 +173,5 @@ export default [{
   type: 'select',
   tagname: 'select',
   options: 'Option 1\nOption 2\nOption 3',
+  html: {},
 }];

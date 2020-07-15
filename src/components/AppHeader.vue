@@ -45,6 +45,7 @@
     </div>
 
     <div class="code">
+      {{html}}
       <div :key="index" v-for="(field,index) in this.$store.state.fields" class="form-group">
         <HeaderElement
                   v-if="field.type === 'header'"
@@ -114,6 +115,9 @@
 <script>
 import $ from 'jquery';
 import pretty from 'pretty';
+
+import elements from '../elements';
+
 import HeaderElement from './elements/HeaderElement.vue';
 import NameElement from './elements/NameElement.vue';
 import EmailElement from './elements/EmailElement.vue';
@@ -125,6 +129,21 @@ import RadioButtonsElement from './elements/RadioButtonsElement.vue';
 import SelectElement from './elements/SelectElement.vue';
 
 export default {
+  computed: {
+    fields() {
+      return this.$store.state.fields;
+    },
+    html() {
+      let result = '';
+
+      for (let i = 0; i < this.fields.length; i += 1) {
+        const element = elements.find((el) => el.name === this.fields[i].name);
+        result += pretty(this.getHtml(element.html, i));
+      }
+
+      return result;
+    },
+  },
   data() {
     return {
       code: '',
@@ -136,18 +155,6 @@ export default {
     },
     formatCode(code) {
       let theCode = code;
-      /*
-      // remove br tags
-      code = code.replace(/<br>/g, '');
-      // remove span tags
-      code = code.replace(/<span\s+>/g, '');
-      code = code.replace(/<\/span>/g, '');
-
-      code = code.replace(/(?!^)&#60;/g, '<br />&#60;');
-
-      code = code.replace(/</gi, '&#60;');
-
-      code = code.replace(/>/gi, "&#62;<br />"); */
 
       // remove content editable attribute
       theCode = theCode.replace(/contenteditable="true"/g, '');
@@ -159,6 +166,58 @@ export default {
       theCode = theCode.replace(/<!---->/g, '');
 
       return theCode;
+    },
+    getHtml(obj, fieldIndex) {
+      let result = '';
+      let closeTag = false;
+
+      if (obj.type === 'element' && obj.children !== undefined) {
+        const matches = obj.value.match(/^{(.*)}$/) || [];
+
+        if (!matches.length) {
+          result += `<${obj.value}>`;
+        } else {
+          result += `<${this.fields[fieldIndex][matches[1]]}>`;
+        }
+
+        result += '\n';
+
+        closeTag = true;
+      }
+
+      if (obj.type === 'text') {
+        const matches = obj.value.match(/^{(.*)}$/) || [];
+
+        if (!matches.length) {
+          result += obj.value;
+        } else {
+          result += this.fields[fieldIndex][matches[1]];
+        }
+      }
+
+      if (obj.type === 'break') {
+        result += '<br />\n';
+      }
+
+      if (obj.children !== undefined) {
+        for (let i = 0; i < obj.children.length; i += 1) {
+          result += this.getHtml(obj.children[i], fieldIndex);
+        }
+      }
+
+      if (obj.type === 'element' && closeTag === true) {
+        const matches = obj.value.match(/^{(.*)}$/) || [];
+
+        if (!matches.length) {
+          result += `\n</${obj.value}>`;
+        } else {
+          result += `\n</${this.fields[fieldIndex][matches[1]]}>`;
+        }
+
+        result += `\n</${this.fields[fieldIndex].tagname}>`;
+      }
+
+      return result;
     },
     showEmbedCode() {
       $('.modal').show();
@@ -187,7 +246,7 @@ export default {
       }
     });
 
-    $('.embed-code-box').click(function () {
+    $('.embed-code-box').click(() => {
       $(this).select();
     });
   },
