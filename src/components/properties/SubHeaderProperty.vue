@@ -25,7 +25,10 @@ export default {
   },
   methods: {
     updateSubHeader(e) {
-      this.$store.commit('updateFieldSubHeader', e.target.value);
+      this.$store.commit('updateFieldSubHeader', {
+        index: this.$store.state.activeIndex,
+        value: e.target.value,
+      });
     },
   },
 };

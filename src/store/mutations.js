@@ -16,6 +16,9 @@ export default {
   togglePropertiesSidebar(state, payload) {
     state.showPropertiesSidebar = payload.state;
   },
+  updateActiveIndex(state, index) {
+    state.activeIndex = index;
+  },
   updateField(state, payload) {
     state.fields[state.activeIndex][payload.field] = payload.value;
   },
@@ -31,8 +34,8 @@ export default {
   updateFieldLabel(state, label) {
     state.fields[state.activeIndex].label = label;
   },
-  updateFieldSubHeader(state, value) {
-    state.fields[state.activeIndex].subheader = value;
+  updateFieldSubHeader(state, payload) {
+    state.fields[payload.index].subheader = payload.value;
   },
   updateFieldTagname(state, payload) {
     state.fields[payload.index].tagname = payload.tagname;

@@ -27,25 +27,25 @@
 
 <script>
 export default {
-  props: ['field'],
+  props: ['field', 'index'],
   computed: {
     subHeader: {
       get() {
         const state = { ...this.$store.state };
 
-        return state.fields[state.activeIndex].subheader;
+        return state.fields[this.index].subheader;
       },
       set(value) {
-        this.$store.commit('updateFieldSubHeader', value);
+        this.$store.commit('updateFieldSubHeader', {
+          index: this.index,
+          value,
+        });
       },
     },
   },
   methods: {
     updateLabel(e) {
       this.$store.commit('updateFieldLabel', e.target.innerText);
-    },
-    updateSubHeader(result) {
-      this.$store.commit('updateFieldSubHeader', result);
     },
   },
 };

@@ -42,6 +42,7 @@
             v-if="field.type === 'header'"
             v-bind:class="field.textalign"
             v-bind:field="field"
+            v-bind:index="index"
           ></HeaderElement>
 
           <NameElement
@@ -135,33 +136,12 @@ export default {
   },
   data() {
     return {
-      activeIndex: null,
       hasFields: false,
       middleName: null,
-      options: '',
       prevIndex: null,
-      subfields: [],
-      type: null,
-      visibility: null,
-      activeIndexSubFields() {
-        return this
-          .fieldsArr[this.activeIndex]
-          .subfields.filter((subfield) => subfield.active === 1);
-      },
       // delete field by deleting element from page, array, and db
       deleteElement(index) {
         this.fieldsArr.splice(index, 1);
-      },
-      duplicate() {
-        this.receiveElement(
-          JSON.parse(
-            JSON.stringify(
-              this.fieldsArr[this.activeIndex],
-            ),
-          ), this.activeIndex + 1,
-        );
-
-        this.elementFocus(this.activeIndex + 1);
       },
       editElementProperties() {
         this.$store.commit('toggleElementsSidebar', {
@@ -172,19 +152,9 @@ export default {
           state: true,
         });
       },
-      editOptions() {
-        this.fieldsArr[this.activeIndex].options = this.options;
-      },
-      editTextAlign(textalign) {
-        this.fieldsArr[this.activeIndex].textalign = textalign;
-      },
       elementFocus(index) {
         if (this.fieldsArr[index] !== undefined) {
-          this.activeIndex = index;
-          this.options = this.fieldsArr[index].options;
-          this.type = this.fieldsArr[index].type;
-          this.subfields = this.fieldsArr[index].subfields;
-          this.visibility = this.fieldsArr[index].visibility;
+          this.$store.commit('updateActiveIndex', index);
 
           this.$store.commit('resetIsFocused', {});
           this.$store.commit('updateFieldIsFocused', { index, visible: true });
@@ -283,7 +253,7 @@ export default {
       receive(event, ui) {
         if (ui.item.attr('id')) {
           const newIndex = parseInt($(this).data('ui-sortable').currentItem.index(), 10);
-          const element = $.extend(true, {}, elements[ui.item.attr('id')]);
+          const element = $.extend(true, {}, elements.find((el) => el.name === ui.item.attr('id')));
 
           $(this).removeAttr('data-previndex');
           $(ui.helper).replaceWith('');

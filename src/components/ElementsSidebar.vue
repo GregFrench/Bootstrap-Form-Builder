@@ -7,61 +7,17 @@
       ></span>
     </div>
 
-    <div id="header" class="element-container" v-on:click="test()">
-      <div class="element-icon">
-        <span class="glyphicon glyphicon-header"></span>
+    <div :id="element.id"
+      class="element-container"
+      v-for="(element, id) in elements"
+      v-bind:key="id"
+      v-on:click="addElement(element.name)"
+    >
+      <div v-if="element.icon !== undefined" class="element-icon">
+        <span class="glyphicon" :class="element.icon"></span>
       </div>
       <div class="element-text">
-        Header
-      </div>
-    </div>
-    <div id="name" class="element-container">
-      <div class="element-icon">
-        <span class="glyphicon glyphicon-user"></span>
-      </div>
-      <div class="element-text">
-        Full Name
-      </div>
-    </div>
-    <div id="email" class="element-container">
-      <div class="element-icon">
-        <span class="glyphicon glyphicon-envelope"></span>
-      </div>
-      <div class="element-text">
-        Email
-      </div>
-    </div>
-    <div id="address" class="element-container">
-      <div class="element-icon">
-        <span class="glyphicon glyphicon-map-marker"></span>
-      </div>
-      <div class="element-text">
-        Address
-      </div>
-    </div>
-    <div id="input" class="element-container">
-      <div class="element-text">
-        Input
-      </div>
-    </div>
-    <div id="textarea" class="element-container">
-      <div class="element-text">
-        Textarea
-      </div>
-    </div>
-    <div id="checkboxes" class="element-container">
-      <div class="element-text">
-        Checkboxes
-      </div>
-    </div>
-    <div id="radio_buttons" class="element-container">
-      <div class="element-text">
-        Radio Buttons
-      </div>
-    </div>
-    <div id="select" class="element-container">
-      <div class="element-text">
-        Select
+        {{element.text.toUpperCase()}}
       </div>
     </div>
   </div>
@@ -74,6 +30,9 @@ export default {
   props: ['showElementsSidebar'],
   computed: {
     // change name to 'fields' after switch
+    elements() {
+      return elements;
+    },
     fieldsArr() {
       return this.$store.state.fields;
     },
@@ -85,11 +44,11 @@ export default {
           state: false,
         });
       },
-      test() {
-        const element = elements.header;
+      addElement(name) {
+        const element = elements.find((el) => el.name === name);
 
         this.$store.commit('addFieldElement', {
-          index: this.fieldsArr.length - 1,
+          index: this.fieldsArr.length,
           element: {
             id: this.fieldsArr.length,
             name: element.name,
@@ -104,7 +63,7 @@ export default {
             textalign: element.textalign,
             visibility: element.visibility,
             isFocused: true,
-            order_rank: this.fieldsArr.length - 1,
+            order_rank: this.fieldsArr.length,
           },
         });
       },
