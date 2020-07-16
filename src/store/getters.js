@@ -13,6 +13,15 @@ export default {
       }
     }
 
-    return result;
+    // remove empty elements
+    // result = result.replace(/<[^\/>]+>[ \n\r\t]*<\/[^>]+>/, '');
+
+    // console.log(result.match(/\n\n+/));
+
+    // remove excess newline characters
+    // result = result.replace(/\n\n+/, '');
+
+    // trim removes the last newline
+    return result.trim();
   },
 };

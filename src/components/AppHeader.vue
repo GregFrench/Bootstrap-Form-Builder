@@ -2,17 +2,17 @@
 <div>
   <header class="site-header">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4">
-                <a href="#" class="logo">Bootstrap Form Builder</a>
-            </div>
-            <div class="col-sm-4 text-center">
-              <p>&nbsp;</p>
-            </div>
-            <div class="col-sm-4 text-center">
-                <a href="https://github.com/GregFrench/Bootstrap-Form-Builder" class="fork-me">Star me on GitHub</a>
-            </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <a href="#" class="logo">Bootstrap Form Builder</a>
         </div>
+        <div class="col-sm-4 text-center">
+          <p>&nbsp;</p>
+        </div>
+        <div class="col-sm-4 text-center">
+          <a href="https://github.com/GregFrench/Bootstrap-Form-Builder" class="fork-me">Fork me on GitHub</a>
+        </div>
+      </div>
     </div>
   </header>
   <nav class="site-nav">
@@ -46,47 +46,6 @@
         </div>
       </div>
     </div>
-
-    <div class="code">
-      <div :key="index" v-for="(field,index) in this.$store.state.fields" class="form-group">
-                <EmailElement
-                  v-if="field.type === 'email'"
-                  v-bind:field="field"
-                  v-bind:index="index"
-                  >
-                </EmailElement>
-
-                <AddressElement
-                  v-if="field.type === 'address'"
-                  v-bind:field="field"
-                  >
-                </AddressElement>
-
-                <TextareaElement
-                  v-if="field.type === 'textarea'"
-                  v-bind:field="field"
-                  >
-                </TextareaElement>
-
-                <CheckboxesElement
-                  v-if="field.type === 'checkboxes'"
-                  v-bind:field="field"
-                  >
-                </CheckboxesElement>
-
-                <RadioButtonsElement
-                  v-if="field.type === 'radio_buttons'"
-                  v-bind:field="field"
-                  >
-                </RadioButtonsElement>
-
-                <SelectElement
-                  v-if="field.type === 'select'"
-                  v-bind:field="field"
-                  >
-                </SelectElement>
-      </div>
-    </div>
 </div>
 </template>
 
@@ -100,13 +59,6 @@ import pretty from 'pretty';
 
 // import elements from '../elements';
 import getters from '../store/getters';
-
-import EmailElement from './elements/EmailElement.vue';
-import AddressElement from './elements/AddressElement.vue';
-import TextareaElement from './elements/TextareaElement.vue';
-import CheckboxesElement from './elements/CheckboxesElement.vue';
-import RadioButtonsElement from './elements/RadioButtonsElement.vue';
-import SelectElement from './elements/SelectElement.vue';
 
 export default {
   computed: {
@@ -143,8 +95,6 @@ export default {
     },
     showEmbedCode() {
       $('.modal').show();
-      const code = $('.code').html();
-      $('.embed-code-box').html(pretty(this.formatCode(code)));
     },
     hideEmbedCode() {
       this.$modal.hide('embed-code');
@@ -167,14 +117,6 @@ export default {
         $('.modal').hide();
       }
     });
-  },
-  components: {
-    EmailElement,
-    AddressElement,
-    TextareaElement,
-    CheckboxesElement,
-    RadioButtonsElement,
-    SelectElement,
   },
 };
 </script>

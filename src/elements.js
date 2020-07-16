@@ -18,6 +18,7 @@ export default [{
     }, {
       type: 'element',
       value: 'small',
+      is_not_empty: '{subheader}',
       children: [{
         type: 'text',
         value: '{subheader}',
@@ -33,7 +34,7 @@ export default [{
   type: 'name',
   html: [{
     type: 'element',
-    value: 'label',
+    tagName: 'label',
     newline: false,
     children: [{
       type: 'text',
