@@ -11,7 +11,10 @@ export default [{
   html: [{
     type: 'element',
     tagName: '{tagname}',
-    classNames: ['{textalign}'],
+    attributes: [{
+      name: 'class',
+      value: ['{textalign}'],
+    }],
     children: [{
       type: 'text',
       value: '{label}',
@@ -35,11 +38,17 @@ export default [{
   html: [{
     type: 'element',
     tagName: 'div',
-    classNames: ['row'],
+    attributes: [{
+      name: 'class',
+      value: ['row'],
+    }],
     children: [{
       type: 'element',
       tagName: 'div',
-      classNames: ['col'],
+      attributes: [{
+        name: 'class',
+        value: ['col'],
+      }],
       children: [{
         type: 'element',
         tagName: 'input',
@@ -58,7 +67,10 @@ export default [{
     }, {
       type: 'element',
       tagName: 'div',
-      classNames: ['col'],
+      attributes: [{
+        name: 'class',
+        value: ['col'],
+      }],
       children: [{
         type: 'element',
         tagName: 'input',

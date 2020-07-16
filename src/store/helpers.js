@@ -55,12 +55,10 @@ export default {
 
         if (!matches.length) {
           result += `<${obj.tagName}`;
-          result += this.addClassNames(obj.classNames, field);
           result += this.addAttributes(obj.attributes, field);
           result += '>';
         } else {
           result += `<${field[matches[1]]}`;
-          result += this.addClassNames(obj.classNames, field);
           result += this.addAttributes(obj.attributes, field);
           result += '>';
         }
