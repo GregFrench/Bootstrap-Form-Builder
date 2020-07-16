@@ -10,14 +10,14 @@ export default [{
   textalign: 'text-left',
   html: [{
     type: 'element',
-    value: '{tagname}',
+    tagName: '{tagname}',
     classNames: ['{textalign}'],
     children: [{
       type: 'text',
       value: '{label}',
     }, {
       type: 'element',
-      value: 'small',
+      tagName: 'small',
       is_not_empty: '{subheader}',
       children: [{
         type: 'text',
@@ -34,12 +34,46 @@ export default [{
   type: 'name',
   html: [{
     type: 'element',
-    tagName: 'label',
-    newline: false,
+    tagName: 'div',
+    classNames: ['row'],
     children: [{
-      type: 'text',
-      value: '{label}',
-      newline: false,
+      type: 'element',
+      tagName: 'div',
+      classNames: ['col'],
+      children: [{
+        type: 'element',
+        tagName: 'input',
+        attributes: [{
+          name: 'type',
+          value: 'text',
+        }, {
+          name: 'class',
+          value: ['form-control'],
+        }, {
+          name: 'placeholder',
+          value: 'First name',
+        }],
+        hasEndTag: false,
+      }],
+    }, {
+      type: 'element',
+      tagName: 'div',
+      classNames: ['col'],
+      children: [{
+        type: 'element',
+        tagName: 'input',
+        attributes: [{
+          name: 'type',
+          value: 'text',
+        }, {
+          name: 'class',
+          value: ['form-control'],
+        }, {
+          name: 'placeholder',
+          value: 'Last name',
+        }],
+        hasEndTag: false,
+      }],
     }],
   }],
   subfields: [{

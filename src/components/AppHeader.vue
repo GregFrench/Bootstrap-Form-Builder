@@ -55,7 +55,6 @@
 
 <script>
 import $ from 'jquery';
-import pretty from 'pretty';
 
 // import elements from '../elements';
 import getters from '../store/getters';

@@ -1,10 +1,44 @@
 export default {
+  addAttributes(attributes = [], field) {
+    let result = '';
+
+    for (let i = 0; i < attributes.length; i += 1) {
+      if (attributes[i].name === 'class') {
+        result += this.addClassNames(attributes[i].value, field);
+      } else {
+        result += ` ${attributes[i].name}="${attributes[i].value}"`;
+      }
+    }
+
+    return result;
+  },
+  addClassNames(elementClassNames = [], field) {
+    let classNames = '';
+    let result = '';
+
+    for (let i = 0; i < elementClassNames.length; i += 1) {
+      const matches = elementClassNames[i].match(/^{(.*)}$/) || [];
+
+      if (matches.length) {
+        if (field.textalign !== 'text-left') {
+          classNames += field[matches[1]];
+        }
+      } else {
+        classNames += elementClassNames[i];
+      }
+    }
+
+    if (classNames !== '') {
+      result = ` class="${classNames}"`;
+    }
+
+    return result;
+  },
   getHtml(obj, field, depth = 0) {
     let result = '';
     let showElement = true;
 
     if (obj.type === 'element') {
-
       if (obj.is_not_empty !== undefined) {
         const matches = obj.is_not_empty.match(/^{(.*)}$/) || [];
         if (field[matches[1]].trim() === '') {
@@ -17,14 +51,18 @@ export default {
           result += ' ';
         }
 
-        const matches = obj.value.match(/^{(.*)}$/) || [];
+        const matches = obj.tagName.match(/^{(.*)}$/) || [];
 
         if (!matches.length) {
-          result += `<${obj.value}>`;
-        } else if (field.textalign === 'text-left') {
-          result += `<${field[matches[1]]}>`;
+          result += `<${obj.tagName}`;
+          result += this.addClassNames(obj.classNames, field);
+          result += this.addAttributes(obj.attributes, field);
+          result += '>';
         } else {
-          result += `<${field[matches[1]]} class="${field.textalign}">`;
+          result += `<${field[matches[1]]}`;
+          result += this.addClassNames(obj.classNames, field);
+          result += this.addAttributes(obj.attributes, field);
+          result += '>';
         }
 
         if (obj.newline !== false) {
@@ -58,7 +96,6 @@ export default {
     }
 
     if (obj.type === 'element') {
-
       if (obj.is_not_empty !== undefined) {
         const matches = obj.is_not_empty.match(/^{(.*)}$/) || [];
         if (field[matches[1]].trim() === '') {
@@ -66,14 +103,14 @@ export default {
         }
       }
 
-      if (showElement === true) {
+      if (showElement === true && obj.hasEndTag !== false) {
         for (let i = 0; i < depth; i += 1) {
           result += ' ';
         }
-        const matches = obj.value.match(/^{(.*)}$/) || [];
+        const matches = obj.tagName.match(/^{(.*)}$/) || [];
 
         if (!matches.length) {
-          result += `</${obj.value}>`;
+          result += `</${obj.tagName}>`;
         } else {
           result += `</${field[matches[1]]}>`;
         }

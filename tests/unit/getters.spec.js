@@ -42,4 +42,23 @@ describe('getters', () => {
     // assert the result
     expect(result).toBe('<h2 class="text-center">\n  Form Title\n  <small>\n    Great Form!\n  </small>\n</h2>');
   });
+
+  it('html() returns correct output for a name element with default values', () => {
+    // mock state
+    const state = {
+      fields: [{
+        id: 'name',
+        name: 'name',
+        label: 'Name',
+        type: 'name',
+      }],
+    };
+
+    // get the result from the getter
+    const result = getters.html(state);
+
+    // assert the result
+    expect(result).toBe('<div class="row">\n  <div class="col">\n    <input type="text" class="form-control" placeholder="First name">\n  </div>\n' +
+    '  <div class="col">\n    <input type="text" class="form-control" placeholder="Last name">\n  </div>\n</div>');
+  });
 });
