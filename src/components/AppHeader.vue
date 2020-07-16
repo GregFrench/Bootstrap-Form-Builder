@@ -37,36 +37,18 @@
       <div class="modal-content">
         <div class="embed-code">
           <h1>Embed Code</h1>
-          <textarea style="width: 100%;" class="embed-code-box">
-            Test
-          </textarea>
+          <textarea
+            spellcheck="false"
+            style="width: 100%;"
+            class="embed-code-box"
+            v-model="html"
+          ></textarea>
         </div>
       </div>
     </div>
 
     <div class="code">
-      {{html}}
       <div :key="index" v-for="(field,index) in this.$store.state.fields" class="form-group">
-        <HeaderElement
-                  v-if="field.type === 'header'"
-                  v-bind:class="field.textalign"
-                  v-bind:field="field"
-                  v-bind:index="index"
-                  >
-                </HeaderElement>
-
-                <NameElement
-                  v-if="field.type === 'name'"
-                  v-bind:field="field"
-                  >
-                </NameElement>
-
-                <InputElement
-                  v-if="field.type === 'text'"
-                  v-bind:field="field"
-                  >
-                </InputElement>
-
                 <EmailElement
                   v-if="field.type === 'email'"
                   v-bind:field="field"
@@ -116,13 +98,11 @@
 import $ from 'jquery';
 import pretty from 'pretty';
 
-import elements from '../elements';
+// import elements from '../elements';
+import getters from '../store/getters';
 
-import HeaderElement from './elements/HeaderElement.vue';
-import NameElement from './elements/NameElement.vue';
 import EmailElement from './elements/EmailElement.vue';
 import AddressElement from './elements/AddressElement.vue';
-import InputElement from './elements/InputElement.vue';
 import TextareaElement from './elements/TextareaElement.vue';
 import CheckboxesElement from './elements/CheckboxesElement.vue';
 import RadioButtonsElement from './elements/RadioButtonsElement.vue';
@@ -134,16 +114,21 @@ export default {
       return this.$store.state.fields;
     },
     html() {
-      let result = '';
+      return this.$store.getters.html;
+      /* let result = '';
 
       for (let i = 0; i < this.fields.length; i += 1) {
         const element = elements.find((el) => el.name === this.fields[i].name);
-        result += pretty(this.getHtml(element.html, i));
+
+        for (let j = 0; j < element.html.length; j += 1) {
+          result += this.getHtml(element.html[j], this.fields[i]);
+        }
       }
 
-      return result;
+      return pretty(result); */
     },
   },
+  getters,
   data() {
     return {
       code: '',
@@ -167,54 +152,60 @@ export default {
 
       return theCode;
     },
-    getHtml(obj, fieldIndex) {
+    getHtml(obj, field, depth = 0) {
       let result = '';
-      let closeTag = false;
 
-      if (obj.type === 'element' && obj.children !== undefined) {
+      for (let i = 0; i < depth; i += 1) {
+        // result += ' ';
+      }
+
+      if (obj.type === 'element') {
         const matches = obj.value.match(/^{(.*)}$/) || [];
 
         if (!matches.length) {
           result += `<${obj.value}>`;
         } else {
-          result += `<${this.fields[fieldIndex][matches[1]]}>`;
+          result += `<${field[matches[1]]}>`;
         }
 
-        result += '\n';
-
-        closeTag = true;
-      }
-
-      if (obj.type === 'text') {
+        if (obj.newline !== false) {
+          result += '\n';
+        }
+      } else if (obj.type === 'text') {
         const matches = obj.value.match(/^{(.*)}$/) || [];
 
         if (!matches.length) {
           result += obj.value;
         } else {
-          result += this.fields[fieldIndex][matches[1]];
+          result += field[matches[1]];
         }
-      }
 
-      if (obj.type === 'break') {
+        if (obj.newline !== false) {
+          result += '\n';
+        }
+      } else if (obj.type === 'break') {
         result += '<br />\n';
       }
 
       if (obj.children !== undefined) {
         for (let i = 0; i < obj.children.length; i += 1) {
-          result += this.getHtml(obj.children[i], fieldIndex);
+          result += this.getHtml(obj.children[i], field, depth + 2);
         }
       }
 
-      if (obj.type === 'element' && closeTag === true) {
+      if (obj.type === 'element') {
+        for (let i = 0; i < depth; i += 1) {
+          // result += ' ';
+        }
         const matches = obj.value.match(/^{(.*)}$/) || [];
 
         if (!matches.length) {
-          result += `\n</${obj.value}>`;
+          result += `</${obj.value}>`;
         } else {
-          result += `\n</${this.fields[fieldIndex][matches[1]]}>`;
+          result += `</${field[matches[1]]}>`;
         }
 
-        result += `\n</${this.fields[fieldIndex].tagname}>`;
+        result += '\n';
       }
 
       return result;
@@ -245,17 +236,10 @@ export default {
         $('.modal').hide();
       }
     });
-
-    $('.embed-code-box').click(() => {
-      $(this).select();
-    });
   },
   components: {
-    HeaderElement,
-    NameElement,
     EmailElement,
     AddressElement,
-    InputElement,
     TextareaElement,
     CheckboxesElement,
     RadioButtonsElement,

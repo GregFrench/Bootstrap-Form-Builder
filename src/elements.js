@@ -8,15 +8,13 @@ export default [{
   type: 'header',
   tagname: 'h1',
   textalign: 'text-left',
-  html: {
+  html: [{
     type: 'element',
     value: '{tagname}',
     classNames: ['{textalign}'],
     children: [{
       type: 'text',
       value: '{label}',
-    }, {
-      type: 'break',
     }, {
       type: 'element',
       value: 'small',
@@ -25,7 +23,7 @@ export default [{
         value: '{subheader}',
       }],
     }],
-  },
+  }],
 }, {
   id: 'name',
   text: 'Full Name',
@@ -33,7 +31,16 @@ export default [{
   name: 'name',
   label: 'Name',
   type: 'name',
-  html: {},
+  html: [{
+    type: 'element',
+    value: 'label',
+    newline: false,
+    children: [{
+      type: 'text',
+      value: '{label}',
+      newline: false,
+    }],
+  }],
   subfields: [{
     name: 'prefix',
     label: 'Prefix',
