@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4">
-          <a href="#" class="logo">Bootstrap Form Builder</a>
+          <a href="#" class="logo">Bootstrap 4 Form Builder</a>
         </div>
         <div class="col-sm-4 text-center">
           <p>&nbsp;</p>
@@ -48,10 +48,6 @@
     </div>
 </div>
 </template>
-
-<style>
-
-</style>
 
 <script>
 import $ from 'jquery';

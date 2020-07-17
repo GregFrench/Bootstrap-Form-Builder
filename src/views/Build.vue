@@ -7,7 +7,7 @@
         <div class="add-form-text">
           Add Form Element
         </div>
-        <div class="circle-normal"><span class="glyphicon glyphicon-plus"></span></div>
+        <div class="circle-normal"><span class="fas fa-plus"></span></div>
 
         <div class="circle-ripple circle-ripple-1"></div>
         <div class="circle-ripple circle-ripple-2"></div>
@@ -29,11 +29,11 @@
           >
           <div v-bind:class="{ hide: field.isFocused === false }" class="action-circles">
             <div v-on:click="editElementProperties()" class="action-circle properties-circle">
-              <span class="glyphicon glyphicon-cog properties-cog"></span>
+              <span class="fas fa-cog properties-cog"></span>
               <span class="properties-text">Properties</span>
             </div>
             <div v-on:click="deleteElement(index)" class="action-circle delete-circle">
-              <span class="glyphicon glyphicon-trash delete-trash"></span>
+              <span class="fas fa-trash-alt delete-trash"></span>
               <span class="delete-text">Remove</span>
             </div>
           </div>

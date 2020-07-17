@@ -3,7 +3,7 @@
     <div class="element-main-header">Form Elements
       <span
         v-on:click="closeSidebar()"
-        class="glyphicon glyphicon-remove pull-right form-elements-remove"
+        class="fas fa-times float-right form-elements-remove"
       ></span>
     </div>
 
@@ -14,7 +14,7 @@
       v-on:click="addElement(element.name)"
     >
       <div v-if="element.icon !== undefined" class="element-icon">
-        <span class="glyphicon" :class="element.icon"></span>
+        <i class="fas" :class="element.icon"></i>
       </div>
       <div class="element-text">
         {{element.text.toUpperCase()}}

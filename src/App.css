@@ -208,11 +208,12 @@ a {
 
 .delete-text {
   font-size: 12px;
-  padding: 5px;
+  padding: 3px;
   padding-left: 10px;
 }
 
 .delete-trash {
+  margin-left: 2px;
   margin-top: 5px;
 }
 
@@ -419,6 +420,7 @@ footer.site-footer {
 
 .form-elements-remove {
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .form-elements-show {
@@ -613,7 +615,7 @@ nav.site-nav ul li a:active {
 
 .properties-text {
   font-size: 12px;
-  padding: 5px;
+  padding: 3px;
   padding-left: 10px;
 }
 

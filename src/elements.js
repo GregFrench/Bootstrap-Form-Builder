@@ -1,7 +1,7 @@
 export default [{
   id: 'header',
   text: 'Header',
-  icon: 'glyphicon-header',
+  icon: 'fa-heading',
   name: 'header',
   label: 'Header',
   subheader: '',
@@ -31,7 +31,7 @@ export default [{
 }, {
   id: 'name',
   text: 'Full Name',
-  icon: 'glyphicon-user',
+  icon: 'fa-user',
   name: 'name',
   label: 'Name',
   type: 'name',
@@ -127,7 +127,7 @@ export default [{
 }, {
   id: 'email',
   text: 'Email',
-  icon: 'glyphicon-envelope',
+  icon: 'fa-envelope',
   name: 'email',
   label: 'Email',
   type: 'email',
@@ -137,7 +137,7 @@ export default [{
 }, {
   id: 'address',
   text: 'Address',
-  icon: 'glyphicon-map-marker',
+  icon: 'fa-map-marker-alt',
   name: 'address',
   label: 'Address',
   type: 'address',

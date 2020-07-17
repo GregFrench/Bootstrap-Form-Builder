@@ -1,18 +1,20 @@
 <template>
-  <div v-bind:class="{
-    h1: field.tagname === 'h1',
-    h2: field.tagname === 'h2',
-    h3: field.tagname === 'h3',
-    h4: field.tagname === 'h4',
-    h5: field.tagname === 'h5',
-    h6: field.tagname === 'h6'
-  }">
-    <span
-      class="editable editable-label"
-      contenteditable="true"
-      @focusout="updateLabel"
-    >{{field.label}}</span><br />
-    <small
+  <div>
+    <div v-bind:class="{
+      h1: field.tagname === 'h1',
+      h2: field.tagname === 'h2',
+      h3: field.tagname === 'h3',
+      h4: field.tagname === 'h4',
+      h5: field.tagname === 'h5',
+      h6: field.tagname === 'h6'
+    }">
+      <span
+        class="editable editable-label"
+        contenteditable="true"
+        @focusout="updateLabel"
+      >{{field.label}}</span>
+    </div>
+    <p
       class="editable"
     ><contenteditable
       data-text="Type a subheader"
@@ -20,7 +22,7 @@
       v-model="subHeader"
       :noNL="true"
     />
-    </small>
+    </p>
   </div>
 </template>
 
