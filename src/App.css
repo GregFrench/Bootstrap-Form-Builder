@@ -389,11 +389,6 @@ footer.site-footer {
   padding: 25px 0 5px 0;
 }
 
-.fork-me {
-  display: block;
-  margin-top: 15px;
-}
-
 .form-focused {
   background-color: #e6e6e6;
 }
@@ -531,31 +526,6 @@ input[readonly]:focus {
 }
 
 .logo-forms:link {
-  text-decoration: none;
-}
-
-header.site-header {
-  height: 50px;
-}
-
-.logo {
-  color: #2196F3;
-  display: inline-block;
-  font-size: 24px;
-  margin-top: 5px;
-}
-
-.logo:hover {
-  color: #2196F3;
-  text-decoration: none;
-}
-
-.logo:visited {
-  color: #2196F3;
-  text-decoration: none;
-}
-
-.logo:link {
   text-decoration: none;
 }
 

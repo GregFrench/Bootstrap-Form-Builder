@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Header />
     <AppHeader></AppHeader>
 
     <div class="content-container build-container build-body">
@@ -103,6 +104,7 @@
 import $ from 'jquery';
 import AppHeader from '../components/AppHeader.vue';
 import ElementsSidebar from '../components/ElementsSidebar.vue';
+import Header from '../components/Header.vue';
 import PropertiesSidebar from '../components/PropertiesSidebar.vue';
 
 // elements
@@ -285,6 +287,7 @@ export default {
     CheckboxesElement,
     ElementsSidebar,
     EmailElement,
+    Header,
     HeaderElement,
     InputElement,
     NameElement,

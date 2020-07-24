@@ -83,8 +83,6 @@ export default {
       if (obj.newline !== false) {
         result += '\n';
       }
-    } else if (obj.type === 'break') {
-      result += '<br />\n';
     }
 
     if (obj.children !== undefined && showElement === true) {

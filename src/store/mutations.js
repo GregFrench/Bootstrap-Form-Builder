@@ -2,6 +2,9 @@ export default {
   addFieldElement(state, payload) {
     state.fields.splice(payload.index, 0, payload.element);
   },
+  deleteField(state, index) {
+    state.fields.splice(index, 1);
+  },
   resetIsFocused(state) {
     state.fields.map((field) => {
       const theField = field;
@@ -20,12 +23,6 @@ export default {
     state.activeIndex = index;
   },
   updateField(state, payload) {
-    state.fields[state.activeIndex][payload.field] = payload.value;
-  },
-  updateFields(state, payload) {
-    state.fields = payload.fields;
-  },
-  updateFieldElement(state, payload) {
     state.fields.splice(payload.index, 1, { ...state.fields[payload.index], ...payload.data });
   },
   updateFieldIsFocused(state, payload) {

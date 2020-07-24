@@ -1,20 +1,5 @@
 <template>
 <div>
-  <header class="site-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4">
-          <a href="#" class="logo">Bootstrap 4 Form Builder</a>
-        </div>
-        <div class="col-sm-4 text-center">
-          <p>&nbsp;</p>
-        </div>
-        <div class="col-sm-4 text-center">
-          <a href="https://github.com/GregFrench/Bootstrap-Form-Builder" class="fork-me">Fork me on GitHub</a>
-        </div>
-      </div>
-    </div>
-  </header>
   <nav class="site-nav">
     <div class="container">
         <div class="row">
