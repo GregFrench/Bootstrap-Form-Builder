@@ -61,4 +61,51 @@ describe('getters', () => {
     expect(result).toBe('<div class="row">\n  <div class="col">\n    <input type="text" class="form-control" placeholder="First name">\n  </div>\n' +
     '  <div class="col">\n    <input type="text" class="form-control" placeholder="Last name">\n  </div>\n</div>');
   });
+
+  it('getFieldLabelByIndex() returns the field label of "Header" at the first index', () => {
+    // mock state
+    const state = {
+      fields: [{
+        label: 'Header',
+      }],
+    };
+
+    // get the result from the getter
+    const result = getters.getFieldLabelByIndex(state, 0);
+
+    // assert the result
+    expect(result).toBe('Header');
+  });
+
+  it('getFieldLabelByIndex() returns the field label of "File Upload" at the first index', () => {
+    // mock state
+    const state = {
+      fields: [{
+        label: 'File Upload',
+      }],
+    };
+
+    // get the result from the getter
+    const result = getters.getFieldLabelByIndex(state, 0);
+
+    // assert the result
+    expect(result).toBe('File Upload');
+  });
+
+  it('getFieldLabelByIndex() returns the field label of "Header" at the second index', () => {
+    // mock state
+    const state = {
+      fields: [{
+        label: 'Test',
+      }, {
+        label: 'Header',
+      }],
+    };
+
+    // get the result from the getter
+    const result = getters.getFieldLabelByIndex(state, 1);
+
+    // assert the result
+    expect(result).toBe('Header');
+  });
 });

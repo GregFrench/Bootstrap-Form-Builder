@@ -2,6 +2,7 @@ import elements from '../elements';
 import helpers from './helpers';
 
 export default {
+  getFieldLabelByIndex: (state, index) => state.fields[index].label,
   html: (state) => {
     let result = '';
 
