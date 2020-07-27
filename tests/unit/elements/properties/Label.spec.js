@@ -3,7 +3,7 @@ import { shallowMount } from '@vue/test-utils';
 import Label from '@/components/elements/properties/Label.vue';
 
 // Mount the component
-const wrapper = shallowMount(Label);
+// const wrapper = shallowMount(Label);
 
 // helper function that mounts and returns the rendered component
 function getMountedComponent(Component, propsData) {

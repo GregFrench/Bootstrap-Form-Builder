@@ -58,8 +58,8 @@ describe('getters', () => {
     const result = getters.html(state);
 
     // assert the result
-    expect(result).toBe('<div class="row">\n  <div class="col">\n    <input type="text" class="form-control" placeholder="First name">\n  </div>\n' +
-    '  <div class="col">\n    <input type="text" class="form-control" placeholder="Last name">\n  </div>\n</div>');
+    expect(result).toBe('<div class="row">\n  <div class="col">\n    <input type="text" class="form-control" placeholder="First name">\n  </div>\n'
+    + '  <div class="col">\n    <input type="text" class="form-control" placeholder="Last name">\n  </div>\n</div>');
   });
 
   it('getFieldLabelByIndex() returns the field label of "Header" at the first index', () => {
