@@ -15,7 +15,7 @@ import { mapState } from 'vuex';
 import methods from '../../store/methods';
 
 export default {
-  props: ['text'],
+  props: ['index', 'text'],
   computed: {
     ...mapState({
       label: (state) => {
@@ -27,7 +27,6 @@ export default {
 
         return result;
       },
-      index: (state) => state.activeIndex,
     }),
   },
   methods,
