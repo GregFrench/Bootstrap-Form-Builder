@@ -11,7 +11,7 @@
       <span
         class="editable editable-label"
         contenteditable="true"
-        v-on:focusout="updateLabel($store, $event, index)"
+        v-on:focusout="updateLabel($event, index)"
       >{{field.label}}</span>
     </div>
     <p
