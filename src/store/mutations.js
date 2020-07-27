@@ -28,9 +28,6 @@ export default {
   updateFieldIsFocused(state, payload) {
     state.fields[payload.index].isFocused = payload.visible;
   },
-  updateFieldLabel(state, label) {
-    state.fields[state.activeIndex].label = label;
-  },
   updateFieldSubHeader(state, payload) {
     state.fields[payload.index].subheader = payload.value;
   },
