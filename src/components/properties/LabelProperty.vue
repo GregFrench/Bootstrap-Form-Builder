@@ -5,13 +5,14 @@
       type="text"
       class="form-control input-label"
       :value="label"
-      v-on:input="updateLabel($event)"
+      v-on:input="updateLabel($event, index)"
     >
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex';
+import methods from '../../store/methods';
 
 export default {
   props: ['text'],
@@ -26,17 +27,9 @@ export default {
 
         return result;
       },
+      index: (state) => state.activeIndex,
     }),
   },
-  methods: {
-    updateLabel(e) {
-      this.$store.commit('updateField', {
-        index: this.$store.state.activeIndex,
-        data: {
-          label: e.target.value,
-        },
-      });
-    },
-  },
+  methods,
 };
 </script>
