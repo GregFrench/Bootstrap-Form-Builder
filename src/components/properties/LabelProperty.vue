@@ -1,7 +1,12 @@
 <template>
   <div class="form-group">
     <label>{{text}}</label>
-    <input type="text" class="form-control" :value="label" @input="updateLabel">
+    <input
+      type="text"
+      class="form-control input-label"
+      :value="label"
+      v-on:input="updateLabel($event)"
+    >
   </div>
 </template>
 
@@ -25,7 +30,12 @@ export default {
   },
   methods: {
     updateLabel(e) {
-      this.$store.commit('updateFieldLabel', e.target.value);
+      this.$store.commit('updateField', {
+        index: this.$store.state.activeIndex,
+        data: {
+          label: e.target.value,
+        },
+      });
     },
   },
 };

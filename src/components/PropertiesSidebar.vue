@@ -13,7 +13,7 @@
           ></span>
         </div>
         <div v-if="fieldType === 'header'" class="element-property">
-          <LabelProperty text="Heading Text" />
+          <LabelProperty :index="index" text="Heading Text" />
         </div>
         <div v-if="fieldType !== 'header'" class="element-property">
             <LabelProperty text="Label Text" />
@@ -74,6 +74,9 @@ export default {
       const state = { ...this.$store.state };
 
       return state.fields.length > 0 ? state.fields[state.activeIndex].type : '';
+    },
+    index() {
+      return this.$store.state.activeIndex;
     },
   },
   methods: {
