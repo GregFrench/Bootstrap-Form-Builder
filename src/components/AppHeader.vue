@@ -1,23 +1,5 @@
 <template>
 <div>
-  <nav class="site-nav">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                &nbsp;
-            </div>
-            <div class="col-sm-6 text-center">
-                <ul>
-                    <li><a href="#" v-on:click=showEmbedCode() class="show-embed">Get Code</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-3">
-                &nbsp;
-            </div>
-        </div>
-    </div>
-  </nav>
-
     <div class="modal">
       <div class="modal-content">
         <div class="embed-code">

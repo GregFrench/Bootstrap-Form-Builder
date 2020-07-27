@@ -529,43 +529,6 @@ input[readonly]:focus {
   text-decoration: none;
 }
 
-nav.site-nav {
-  background-color: #2196F3;
-}
-
-nav.site-nav ul {
-  margin: 0;
-  padding: 0;
-}
-
-nav.site-nav ul li {
-  display: inline;
-}
-
-nav.site-nav ul li a {
-  color: #fff;
-  display: inline-block;
-  font-size: 18px;
-  padding: 13px 27px;
-  text-transform: uppercase;
-}
-
-nav.site-nav ul li a:hover {
-  text-decoration: none;
-}
-
-nav.site-nav ul li a:visited {
-  text-decoration: none;
-}
-
-nav.site-nav ul li a:link {
-  text-decoration: none;
-}
-
-nav.site-nav ul li a:active {
-  text-decoration: none;
-}
-
 .properties-circle {
   background-color: #424242;
   top: 0px;

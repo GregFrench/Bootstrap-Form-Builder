@@ -11,7 +11,7 @@
       <span
         class="editable editable-label"
         contenteditable="true"
-        @focusout="updateLabel"
+        v-on:focusout="updateLabel($store, $event, index)"
       >{{field.label}}</span>
     </div>
     <p
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import methods from '../../store/methods';
+
 export default {
   props: ['field', 'index'],
   computed: {
@@ -44,10 +46,6 @@ export default {
       },
     },
   },
-  methods: {
-    updateLabel(e) {
-      this.$store.commit('updateFieldLabel', e.target.innerText);
-    },
-  },
+  methods,
 };
 </script>

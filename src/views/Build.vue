@@ -1,6 +1,7 @@
 <template>
   <div>
     <Header />
+    <Nav />
     <AppHeader></AppHeader>
 
     <div class="content-container build-container build-body">
@@ -105,6 +106,7 @@ import $ from 'jquery';
 import AppHeader from '../components/AppHeader.vue';
 import ElementsSidebar from '../components/ElementsSidebar.vue';
 import Header from '../components/Header.vue';
+import Nav from '../components/Nav.vue';
 import PropertiesSidebar from '../components/PropertiesSidebar.vue';
 
 // elements
@@ -291,6 +293,7 @@ export default {
     HeaderElement,
     InputElement,
     NameElement,
+    Nav,
     PropertiesSidebar,
     RadioButtonsElement,
     SelectElement,
