@@ -1,7 +1,9 @@
 <template>
-  <span>
-    {{ value }}
-  </span>
+  <strong>
+    <span>
+      {{ value }}
+    </span>
+  </strong>
 </template>
 
 <script>

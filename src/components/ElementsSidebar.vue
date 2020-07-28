@@ -70,3 +70,36 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.element-container {
+  background-color: #3e4652;
+  border-bottom: 1px solid #333a43;
+  border-top: 1px solid #495261;
+  color: #fff;
+  display: flex;
+  font-size: 15px;
+}
+
+.element-container:hover .element-icon {
+  background-color: #0f83c1;
+  color: #fff;
+  text-decoration: none;
+}
+
+.element-container:hover .element-text {
+  background-color: #2196F3;
+  color: #fff;
+  text-decoration: none;
+}
+
+.element-icon {
+  background-color: #313841;
+  box-sizing: border-box;
+  font-size: 28px;
+  height: 54px;
+  line-height: 54px;
+  text-align: center;
+  min-width: 54px;
+}
+</style>

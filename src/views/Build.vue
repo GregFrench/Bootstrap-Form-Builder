@@ -73,10 +73,10 @@
             v-bind:field="field"
           ></TextareaElement>
 
-          <CheckboxesElement
+          <Checkboxes
             v-if="field.type === 'checkboxes'"
             v-bind:field="field"
-          ></CheckboxesElement>
+          ></Checkboxes>
 
           <RadioButtonsElement
             v-if="field.type === 'radio_buttons'"
@@ -111,7 +111,7 @@ import PropertiesSidebar from '../components/PropertiesSidebar.vue';
 
 // elements
 import AddressElement from '../components/elements/AddressElement.vue';
-import CheckboxesElement from '../components/elements/CheckboxesElement.vue';
+import Checkboxes from '../components/elements/Checkboxes.vue';
 import EmailElement from '../components/elements/EmailElement.vue';
 import HeaderElement from '../components/elements/HeaderElement.vue';
 import InputElement from '../components/elements/InputElement.vue';
@@ -286,7 +286,7 @@ export default {
   components: {
     AddressElement,
     AppHeader,
-    CheckboxesElement,
+    Checkboxes,
     ElementsSidebar,
     EmailElement,
     Header,

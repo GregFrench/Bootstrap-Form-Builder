@@ -1,8 +1,8 @@
 <template>
-<div>
+  <div>
     <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
     <input type="text" name="input" class="form-control">
-</div>
+  </div>
 </template>
 
 <script>
