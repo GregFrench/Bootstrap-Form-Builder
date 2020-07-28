@@ -12,11 +12,11 @@
             class="glyphicon glyphicon-remove pull-right form-elements-remove"
           ></span>
         </div>
-        <div v-if="fieldType === 'header'" class="element-property">
-          <LabelProperty :index="index" text="Heading Text" />
-        </div>
-        <div v-if="fieldType !== 'header'" class="element-property">
-            <LabelProperty text="Label Text" />
+        <div class="element-property">
+          <LabelProperty
+            :index="index"
+            :text="fieldType === 'header' ? 'Heading Text' : 'Label Text'"
+          />
         </div>
         <div v-if="fieldType === 'header'" class="element-property">
           <SubHeaderProperty />
