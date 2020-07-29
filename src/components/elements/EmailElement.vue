@@ -2,6 +2,7 @@
   <div>
     <Label
       :value="field.label"
+      :index="index"
     />
     <input type="email" name="email" class="form-control" :placeholder="field.placeholder">
   </div>

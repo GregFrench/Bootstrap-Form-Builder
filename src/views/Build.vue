@@ -93,6 +93,8 @@
                 This field is hidden and will not be seen on the form.
               </div>
             </div>
+
+            <div class="droppable"></div>
           </div>
         </div>
 

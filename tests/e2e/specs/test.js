@@ -3,6 +3,7 @@
 describe('My First Test', () => {
   it('Visits the app root url', () => {
     cy.visit('/');
+
     cy.contains('.logo', 'Bootstrap 4 Form Builder');
 
     cy.get('.add-form').click();
@@ -106,5 +107,31 @@ describe('My First Test', () => {
     cy.get('body').click();
 
     cy.wait(600);
+  });
+
+  it('Drag and drops a new email form element into the custom form', () => {
+    cy.get('.add-form').click();
+
+    cy.get('#email').trigger('mousedown', { which: 1 });
+
+    cy.get('.sortable').trigger('mousemove', 150, 150).trigger('mouseup', 150, 150);
+  });
+
+  it('Updates the email property label', () => {
+    cy.get('.properties-circle').eq(1).click();
+
+    cy.wait(600);
+
+    cy.get('input').eq(1).type(' Test');
+
+    cy.contains('.editable', 'Email Test');
+
+    cy.get('body').click();
+
+    cy.wait(600);
+
+    cy.get('.form-element-container:eq(1) .editable').clear().type('Email');
+
+    cy.contains('.editable', 'Email');
   });
 });
