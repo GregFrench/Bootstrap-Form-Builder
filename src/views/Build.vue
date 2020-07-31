@@ -88,6 +88,11 @@
             v-bind:field="field"
           ></SelectElement>
 
+          <FileUpload
+            v-if="field.type === 'file'"
+            v-bind:field="field"
+          ></FileUpload>
+
               <div v-if="field.visibility === 'hidden'" class="element-not-visible">
                 <span class="glyphicon glyphicon-exclamation-sign"></span>
                 This field is hidden and will not be seen on the form.
@@ -115,6 +120,7 @@ import PropertiesSidebar from '../components/PropertiesSidebar.vue';
 import AddressElement from '../components/elements/AddressElement.vue';
 import Checkboxes from '../components/elements/Checkboxes.vue';
 import EmailElement from '../components/elements/EmailElement.vue';
+import FileUpload from '../components/elements/FileUpload.vue';
 import HeaderElement from '../components/elements/HeaderElement.vue';
 import InputElement from '../components/elements/InputElement.vue';
 import NameElement from '../components/elements/NameElement.vue';
@@ -291,6 +297,7 @@ export default {
     Checkboxes,
     ElementsSidebar,
     EmailElement,
+    FileUpload,
     Header,
     HeaderElement,
     InputElement,

@@ -228,4 +228,12 @@ export default [{
   tagname: 'select',
   options: 'Option 1\nOption 2\nOption 3',
   html: {},
+}, {
+  id: 'file',
+  text: 'File Upload',
+  name: 'file',
+  label: 'File Upload',
+  type: 'file',
+  tagname: 'file',
+  html: {},
 }];

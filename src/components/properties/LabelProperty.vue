@@ -3,7 +3,7 @@
     <label>{{text}}</label>
     <input
       type="text"
-      class="form-control"
+      class="form-control label-property"
       :value="label"
       v-on:input="updateLabel($event, index)"
     >

@@ -134,4 +134,30 @@ describe('My First Test', () => {
 
     cy.contains('.editable', 'Email');
   });
+
+  it('Drag and drops a new file upload form element into the custom form', () => {
+    cy.get('.add-form').click();
+
+    cy.get('#file').trigger('mousedown', { which: 1 });
+
+    cy.get('.sortable').trigger('mousemove', 250, 250).trigger('mouseup', 250, 250);
+  });
+
+  it('Updates the file upload property label', () => {
+    cy.get('.properties-circle').eq(2).click();
+
+    cy.wait(600);
+
+    cy.get('.label-property').type(' Test');
+
+    cy.contains('.editable', 'File Upload Test');
+
+    cy.get('body').click();
+
+    cy.wait(600);
+
+    cy.get('.form-element-container:eq(2) .editable').clear().type('File Upload');
+
+    cy.contains('.editable', 'File Upload');
+  });
 });

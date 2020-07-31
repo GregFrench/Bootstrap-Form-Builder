@@ -12,12 +12,9 @@
 import Label from './properties/Label.vue';
 
 export default {
-  props: ['field', 'index', 'fields'],
+  props: ['field', 'index'],
   components: {
     Label,
-  },
-  data() {
-    return { fieldsRef: this.fields };
   },
 };
 </script>
