@@ -118,6 +118,7 @@
 
 <script>
 import $ from 'jquery';
+
 import AppHeader from '../components/AppHeader.vue';
 import ElementsSidebar from '../components/ElementsSidebar.vue';
 import Header from '../components/Header.vue';
@@ -317,3 +318,32 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.form-element-container {
+  animation-name: bounceIn;
+  animation-duration: 500ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  background-color: #fff;
+}
+
+@keyframes bounceIn{
+  0%{
+    opacity: 0;
+    transform: scale(0.3) translate3d(0,0,0);
+  }
+  50%{
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+  80%{
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1) translate3d(0,0,0);
+  }
+}
+</style>

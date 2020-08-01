@@ -4,7 +4,8 @@
       class="editable editable-label"
       contenteditable="true"
       v-on:focusout="updateLabel($event, index)"
-      ref="myid"
+      ref="label"
+      spellcheck="false"
     >{{ value }}</span>
   </strong>
 </template>
@@ -16,11 +17,10 @@ export default {
   props: ['value', 'index'],
   methods,
   mounted() {
-    console.log(this.$refs.myid);
-    const div = this.$refs.myid;
+    const div = this.$refs.label;
+
     setTimeout(() => {
       div.focus();
-      console.log(div);
 
       window.getSelection().selectAllChildren(
         div,
