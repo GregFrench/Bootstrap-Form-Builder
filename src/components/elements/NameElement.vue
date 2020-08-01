@@ -1,8 +1,9 @@
 <template>
   <div>
-    <strong>
-      <label class="editable" contenteditable="true">{{field.label}}</label>
-    </strong>
+    <Label
+      :value="field.label"
+      :index="index"
+    />
     <div class="row">
       <div
         v-for="(subfield, index) in activeSubFields(field.subfields)"
@@ -21,12 +22,17 @@
 </template>
 
 <script>
+import Label from './properties/Label.vue';
+
 export default {
-  props: ['field'],
+  props: ['field', 'index'],
   methods: {
     activeSubFields(subfields) {
       return subfields.filter((subfield) => subfield.active === 1);
     },
+  },
+  components: {
+    Label,
   },
 };
 </script>

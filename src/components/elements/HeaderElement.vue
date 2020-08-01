@@ -8,11 +8,10 @@
       h5: field.tagname === 'h5',
       h6: field.tagname === 'h6'
     }">
-      <span
-        class="editable editable-label"
-        contenteditable="true"
-        v-on:focusout="updateLabel($event, index)"
-      >{{field.label}}</span>
+      <Label
+        :value="field.label"
+        :index="index"
+      />
     </div>
     <p
       class="editable"
@@ -27,6 +26,7 @@
 </template>
 
 <script>
+import Label from './properties/Label.vue';
 import methods from '../../store/methods';
 
 export default {
@@ -47,5 +47,8 @@ export default {
     },
   },
   methods,
+  components: {
+    Label,
+  },
 };
 </script>

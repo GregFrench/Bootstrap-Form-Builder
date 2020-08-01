@@ -133,7 +133,7 @@ export default [{
   type: 'email',
   placeholder: 'email',
   tagname: 'input',
-  html: {},
+  html: [],
 }, {
   id: 'address',
   text: 'Address',
@@ -235,5 +235,5 @@ export default [{
   label: 'File Upload',
   type: 'file',
   tagname: 'file',
-  html: {},
+  html: [],
 }];

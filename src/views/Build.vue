@@ -50,47 +50,55 @@
           <NameElement
             v-if="field.type === 'name'"
             v-bind:field="field"
+            v-bind:index="index"
           ></NameElement>
 
           <InputElement
             v-if="field.type === 'text'"
             v-bind:field="field"
+            v-bind:index="index"
           ></InputElement>
 
           <EmailElement
             v-if="field.type === 'email'"
             v-bind:field="field"
             v-bind:index="index"
-            ></EmailElement>
+          ></EmailElement>
 
           <AddressElement
             v-if="field.type === 'address'"
             v-bind:field="field"
+            v-bind:index="index"
           ></AddressElement>
 
           <TextareaElement
             v-if="field.type === 'textarea'"
             v-bind:field="field"
+            v-bind:index="index"
           ></TextareaElement>
 
           <Checkboxes
             v-if="field.type === 'checkboxes'"
             v-bind:field="field"
+            v-bind:index="index"
           ></Checkboxes>
 
           <RadioButtonsElement
             v-if="field.type === 'radio_buttons'"
             v-bind:field="field"
+            v-bind:index="index"
           ></RadioButtonsElement>
 
           <SelectElement
             v-if="field.type === 'select'"
             v-bind:field="field"
+            v-bind:index="index"
           ></SelectElement>
 
           <FileUpload
             v-if="field.type === 'file'"
             v-bind:field="field"
+            v-bind:index="index"
           ></FileUpload>
 
               <div v-if="field.visibility === 'hidden'" class="element-not-visible">
@@ -150,7 +158,6 @@ export default {
       hasFields: false,
       middleName: null,
       prevIndex: null,
-      // delete field by deleting element from page, array, and db
       deleteElement(index) {
         this.fields.splice(index, 1);
       },

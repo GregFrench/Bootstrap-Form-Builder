@@ -1,12 +1,20 @@
 <template>
 <div>
-  <label class="editable" contenteditable="true">{{field.label}}</label>
+ <Label
+    :value="field.label"
+    :index="index"
+  />
   <textarea class="form-control"></textarea>
 </div>
 </template>
 
 <script>
+import Label from './properties/Label.vue';
+
 export default {
-  props: ['field'],
+  props: ['field', 'index'],
+  components: {
+    Label,
+  },
 };
 </script>

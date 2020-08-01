@@ -2,7 +2,10 @@
 <div>
   <div class="row">
     <div class="col-xs-12">
-      <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
+      <Label
+        :value="field.label"
+        :index="index"
+      />
       <div v-if="field.subfields[0].active === 1" class="form-group">
         <input
           type="text"
@@ -324,7 +327,12 @@
 </template>
 
 <script>
+import Label from './properties/Label.vue';
+
 export default {
-  props: ['field'],
+  props: ['field', 'index'],
+  components: {
+    Label,
+  },
 };
 </script>

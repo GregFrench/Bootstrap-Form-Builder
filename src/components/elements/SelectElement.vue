@@ -1,6 +1,9 @@
 <template>
 <div>
-  <label class="editable editable-label" contenteditable="true">{{field.label}}</label>
+  <Label
+    :value="field.label"
+    :index="index"
+  />
   <select class="form-control">
     <option
       v-for="(option, index) in splitStringByLine(field.options)"
@@ -13,12 +16,17 @@
 </template>
 
 <script>
+import Label from './properties/Label.vue';
+
 export default {
-  props: ['field'],
+  props: ['field', 'index'],
   methods: {
     splitStringByLine(str) {
       return str.split('\n');
     },
+  },
+  components: {
+    Label,
   },
 };
 </script>

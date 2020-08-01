@@ -20,7 +20,7 @@
 import $ from 'jquery';
 
 // import elements from '../elements';
-import getters from '../store/getters';
+// import getters from '../store/getters';
 
 export default {
   computed: {
@@ -28,10 +28,11 @@ export default {
       return this.$store.state.fields;
     },
     html() {
-      return this.$store.getters.html;
+      return '';
+      // return this.$store.getters.html;
     },
   },
-  getters,
+  // getters,
   data() {
     return {
       code: '',
