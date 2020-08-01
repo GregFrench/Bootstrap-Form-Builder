@@ -14,6 +14,10 @@ describe('My First Test', () => {
   });
 
   it('Updates the header', () => {
+    cy.focused().type('Header');
+
+    cy.contains('.editable', 'Header');
+
     cy.get('.properties-circle').click();
 
     cy.wait(600);
@@ -21,14 +25,6 @@ describe('My First Test', () => {
     cy.get('input').eq(0).type(' Test');
 
     cy.contains('.editable', 'Header Test');
-
-    cy.get('body').click();
-
-    cy.wait(600);
-
-    cy.get('.editable').first().clear().type('Header');
-
-    cy.contains('.editable', 'Header');
   });
 
   it('Updates the Subheader', () => {

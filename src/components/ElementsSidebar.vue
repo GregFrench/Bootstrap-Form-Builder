@@ -65,6 +65,22 @@ export default {
             order_rank: this.fields.length,
           },
         });
+
+        setTimeout(() => {
+          this.elementFocus(this.fields.length - 1);
+        }, 0);
+      },
+      elementFocus(index) {
+        if (this.fields[index] !== undefined) {
+          console.log('test');
+          this.$store.commit('updateActiveIndex', index);
+
+          this.$store.commit('resetIsFocused', {});
+          this.$store.commit('updateFieldIsFocused', { index, visible: true });
+
+          // this.$nextTick(() => this.$refs.element.focus());
+          // window.getSelection().removeAllRanges();
+        }
       },
     };
   },
