@@ -14,7 +14,7 @@
   "dependencies": {
     "html-beautify": "1.0.4",
     "jquery": "3.5.0",
-    "jquery-ui": "1.12.1",
+    "jquery-ui": "1.13.0",
     "pretty": "2.0.0",
     "select-text": "1.0.1",
     "vue": "^2.3.3",
